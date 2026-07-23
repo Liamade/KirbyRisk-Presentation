@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Kirby Risk Presentation</title>
+
+    <link rel="stylesheet" href="node_modules/reveal.js/dist/reset.css" />
+    <link rel="stylesheet" href="node_modules/reveal.js/dist/reveal.css" />
+    <link rel="stylesheet" href="node_modules/reveal.js/dist/theme/black.css" id="theme" />
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <h1>Kirby Risk</h1>
+          <p>Presentation foundation is working.</p>
+          <aside class="notes">Speaker notes go here (press S).</aside>
+        </section>
+        <section>
+          <h2>Slide Two</h2>
+          <p>Use arrow keys or space to navigate.</p>
+        </section>
+        <section>
+          <section><h2>Vertical Stack</h2><p>Press down for nested slides.</p></section>
+          <section><h2>Nested Slide</h2></section>
+        </section>
+      </div>
+    </div>
+
+    <script type="module">
+      import Reveal from './node_modules/reveal.js/dist/reveal.mjs';
+      import Notes from './node_modules/reveal.js/dist/plugin/notes.mjs';
+
+      const deck = new Reveal({
+        hash: true,
+        plugins: [Notes],
+      });
+      deck.initialize();
+    </script>
+  </body>
+</html>
