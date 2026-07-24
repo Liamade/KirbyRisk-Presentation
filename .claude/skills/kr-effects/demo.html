@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>kr-effects — live demo</title>
+    <link rel="stylesheet" href="/node_modules/reveal.js/dist/reset.css" />
+    <link rel="stylesheet" href="/node_modules/reveal.js/dist/reveal.css" />
+    <link rel="stylesheet" href="../kirby-risk-brand/assets/kirby-risk.css" id="theme" />
+    <link rel="stylesheet" href="./assets/kr-effects.css" />
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <!-- 1 · power-on + glow + sparks + shimmer -->
+        <section
+          class="impact"
+          data-kr-sparks="80"
+          data-background-gradient="linear-gradient(135deg, #bf311a 0%, #8e2413 60%, #6d1b0e 100%)"
+        >
+          <span class="kicker">kr-effects demo · arrow through me</span>
+          <h1 class="kr-power-on kr-glow" style="text-transform: uppercase;">Power On</h1>
+          <p class="kr-shimmer" style="font-weight: 700;">.kr-power-on · .kr-glow · .kr-shimmer · data-kr-sparks</p>
+          <p class="muted small">Re-enter this slide — every effect replays.</p>
+        </section>
+
+        <!-- 2 · animated counters -->
+        <section>
+          <span class="kicker">Counters</span>
+          <h2>Numbers that move</h2>
+          <div class="stat-row" style="margin-top: 1em;">
+            <div class="stat">
+              <span class="stat-number" data-kr-count="250" data-kr-count-suffix="+"></span>
+              <span class="stat-label">counts on slide entry</span>
+            </div>
+            <div class="stat">
+              <span class="stat-number" data-kr-count="98.6" data-kr-count-decimals="1" data-kr-count-suffix="%"></span>
+              <span class="stat-label">decimals work too</span>
+            </div>
+            <div class="stat fragment kr-jolt">
+              <span class="stat-number" data-kr-count="12480" data-kr-count-duration="2"></span>
+              <span class="stat-label">fragment + kr-jolt (press →)</span>
+            </div>
+          </div>
+          <p class="muted small" style="text-align: center;">data-kr-count · data-kr-count-suffix/decimals/duration</p>
+        </section>
+
+        <!-- 3 · typewriter terminal -->
+        <section>
+          <span class="kicker">Typewriter</span>
+          <h2>The IT-guy prop</h2>
+          <div class="kr-terminal">
+            <div class="kr-terminal-bar"><i></i><i></i><i></i></div>
+            <div class="kr-terminal-body">
+              <div><span class="kr-prompt">PS</span> <span class="kr-path">C:\kirby-risk></span> <span data-kr-type>.\new-hire.ps1 -Name "J. Doe" -Branch LAF</span></div>
+              <div data-kr-type data-kr-type-delay="250">Creating AD account............ OK</div>
+              <div data-kr-type data-kr-type-delay="150">Assigning groups............... OK</div>
+              <div data-kr-type data-kr-type-delay="150" class="kr-prompt">J. Doe is ready. Make it happen.</div>
+            </div>
+          </div>
+          <p class="muted small" style="text-align: center;">data-kr-type — lines type in sequence, replay on revisit</p>
+        </section>
+
+        <!-- 4 · SVG draw-on + current wire -->
+        <section>
+          <span class="kicker">SVG draw-on</span>
+          <h2>Circuits that draw themselves</h2>
+          <svg class="kr-draw" viewBox="0 0 900 190" style="width: 88%; margin: 0.4em auto; display: block;" xmlns="http://www.w3.org/2000/svg">
+            <path pathLength="1" d="M20 95 H210 L250 40 L330 150 L410 40 L490 150 L530 95 H880"
+                  stroke="var(--kr-red)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
+            <circle pathLength="1" style="--kr-i: 1" cx="20" cy="95" r="12" stroke="var(--kr-gray)" stroke-width="5" />
+            <circle pathLength="1" style="--kr-i: 2" cx="880" cy="95" r="12" stroke="var(--kr-gray)" stroke-width="5" />
+          </svg>
+          <div class="kr-wire" style="width: 88%; margin: 0.8em auto;"></div>
+          <p class="muted small" style="text-align: center;">.kr-draw (needs pathLength="1") · .kr-wire current flow</p>
+        </section>
+
+        <!-- 5 · kinetic type + stagger -->
+        <section>
+          <span class="kicker">Kinetic typography</span>
+          <h2 class="kr-cascade no-rule" data-kr-split="letters">Letters cascade in like this</h2>
+          <div class="tags kr-stagger" style="margin-top: 1.2em;">
+            <span class="tag">then</span>
+            <span class="tag">these</span>
+            <span class="tag">stagger</span>
+            <span class="tag">in</span>
+            <span class="tag hot">automatically</span>
+          </div>
+          <p class="muted small" style="text-align: center; margin-top: 1.4em;">data-kr-split="letters|words" + .kr-cascade · .kr-stagger</p>
+        </section>
+
+        <!-- 6 · custom fragments -->
+        <section>
+          <span class="kicker">Custom fragments</span>
+          <h2>Reveals with intent <span class="muted small">(press →)</span></h2>
+          <div class="cols" style="margin-top: 0.6em;">
+            <div class="col kr-card fragment kr-wipe"><h3>kr-wipe</h3><p>Masked sweep, left to right.</p></div>
+            <div class="col kr-card fragment kr-blur-in"><h3>kr-blur-in</h3><p>Snaps into focus.</p></div>
+            <div class="col kr-card fragment kr-flip"><h3>kr-flip</h3><p>Swings in like a thrown switch.</p></div>
+          </div>
+          <h1 class="fragment kr-jolt accent" style="text-align: center; margin-top: 0.4em;">kr-jolt.</h1>
+        </section>
+
+        <!-- 7 · ken burns background drift -->
+        <section
+          data-state="kenburns"
+          data-background-image="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 900'%3E%3Crect width='1600' height='900' fill='%23f5f4f3'/%3E%3Cg stroke='%23e2e0de' stroke-width='2'%3E%3Cpath d='M0 150 H1600 M0 300 H1600 M0 450 H1600 M0 600 H1600 M0 750 H1600'/%3E%3Cpath d='M200 0 V900 M400 0 V900 M600 0 V900 M800 0 V900 M1000 0 V900 M1200 0 V900 M1400 0 V900'/%3E%3C/g%3E%3Cg stroke='%23bf311a' stroke-width='6' fill='none' opacity='0.5'%3E%3Cpath d='M200 750 H600 V450 H1000 V300 H1400'/%3E%3Ccircle cx='200' cy='750' r='14'/%3E%3Ccircle cx='1400' cy='300' r='14'/%3E%3C/g%3E%3C/svg%3E"
+        >
+          <h2>Ken Burns drift</h2>
+          <p>The background is slowly zooming. Subtle — the audience feels it more than sees it.</p>
+          <p class="muted small">data-state="kenburns" + any data-background-image</p>
+        </section>
+
+        <!-- 8 · the PowerPoint killer -->
+        <section data-background-iframe="https://www.kirbyrisk.com/" data-background-interactive>
+          <div style="background: rgba(26,26,26,0.82); color: #fff; padding: 0.6em 0.9em; border-radius: 10px; width: 46%;">
+            <h3 style="color: #fff;">This is a live website.</h3>
+            <p class="small">Scroll it. Click it. PowerPoint physically cannot do this — embed dashboards, ticket queues, anything with a URL.</p>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <script type="module">
+      import Reveal from '/node_modules/reveal.js/dist/reveal.mjs';
+      import Notes from '/node_modules/reveal.js/dist/plugin/notes.mjs';
+      import { initKrEffects } from './assets/kr-effects.js';
+
+      const deck = new Reveal({
+        width: 1280,
+        height: 720,
+        margin: 0.06,
+        hash: true,
+        slideNumber: 'c/t',
+        transition: 'slide',
+        backgroundTransition: 'fade',
+        autoAnimateEasing: 'ease-out',
+        autoAnimateDuration: 0.7,
+        plugins: [Notes],
+      });
+      deck.initialize();
+      initKrEffects(deck);
+      window.deck = deck; // handy for poking around in devtools
+    </script>
+  </body>
+</html>

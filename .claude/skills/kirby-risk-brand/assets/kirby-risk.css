@@ -1,0 +1,506 @@
+/**
+ * Kirby Risk — reveal.js theme
+ *
+ * Ships inside the kirby-risk-brand skill. To use: copy to theme/kirby-risk.css
+ * and link it in index.html in place of the stock reveal theme (see SKILL.md).
+ *
+ * Brand palette (pulled from kirbyrisk.com):
+ *   Warm Red   #BF311A  — primary accent (logo red)
+ *   Cool Gray  #5F6062  — secondary (logo gray)
+ *   Charcoal   #212121  — body text / dark slides
+ *   Light      #F2F2F2 / #E6E6E6 — panels, page background
+ *
+ * Slide backgrounds are set with data-background-* attributes on <section>.
+ * The .impact and .divider variants style the CONTENT only — pair them with
+ * their gradient, e.g.:
+ *   <section class="impact"
+ *     data-background-gradient="linear-gradient(135deg, #bf311a 0%, #8e2413 60%, #6d1b0e 100%)">
+ *   <section class="divider"
+ *     data-background-gradient="linear-gradient(150deg, #2a2a2a 0%, #1a1a1a 70%)">
+ */
+
+/* ---------------------------------------------------------------------------
+ * Theme variables
+ * ------------------------------------------------------------------------ */
+:root {
+  /* Brand tokens */
+  --kr-red: #bf311a;
+  --kr-red-dark: #8e2413;
+  --kr-red-deep: #6d1b0e;
+  --kr-gray: #5f6062;
+  --kr-charcoal: #212121;
+  --kr-ink: #1a1a1a;
+  --kr-light: #f2f2f2;
+  --kr-line: #e6e6e6;
+  --kr-white: #ffffff;
+  --kr-gradient: linear-gradient(135deg, #bf311a 0%, #8e2413 60%, #6d1b0e 100%);
+  --kr-gradient-dark: linear-gradient(150deg, #2a2a2a 0%, #1a1a1a 70%);
+
+  /* reveal.js theme variables */
+  --r-background-color: #fafafa;
+  --r-main-font: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --r-main-font-size: 38px;
+  --r-main-color: var(--kr-charcoal);
+  --r-block-margin: 20px;
+
+  --r-heading-font: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --r-heading-color: var(--kr-ink);
+  --r-heading-line-height: 1.1;
+  --r-heading-letter-spacing: -0.01em;
+  --r-heading-text-transform: none;
+  --r-heading-text-shadow: none;
+  --r-heading-font-weight: 900;
+  --r-heading-margin: 0 0 var(--r-block-margin) 0;
+  --r-heading1-size: 2.6em;
+  --r-heading2-size: 1.7em;
+  --r-heading3-size: 1.15em;
+  --r-heading4-size: 1em;
+
+  --r-code-font: 'Roboto Mono', 'SFMono-Regular', Consolas, monospace;
+
+  --r-link-color: var(--kr-red);
+  --r-link-color-dark: var(--kr-red-dark);
+  --r-link-color-hover: var(--kr-red-dark);
+
+  --r-selection-background-color: var(--kr-red);
+  --r-selection-color: var(--kr-white);
+
+  --r-overlay-element-bg-color: 33, 33, 33;
+  --r-overlay-element-fg-color: 255, 255, 255;
+}
+
+/* ---------------------------------------------------------------------------
+ * Base
+ * ------------------------------------------------------------------------ */
+.reveal-viewport {
+  background: var(--r-background-color);
+}
+
+.reveal {
+  font-family: var(--r-main-font);
+  font-size: var(--r-main-font-size);
+  font-weight: 400;
+  color: var(--r-main-color);
+}
+
+.reveal ::selection {
+  color: var(--r-selection-color);
+  background: var(--r-selection-background-color);
+  text-shadow: none;
+}
+
+.reveal .slides section {
+  line-height: 1.4;
+  font-weight: inherit;
+  text-align: left; /* corporate decks read better left-aligned */
+}
+
+.reveal .slides section.center-text {
+  text-align: center;
+}
+
+/* Brand frame: thin warm-red bar along the bottom of the viewport */
+.reveal-viewport::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 7px;
+  background: var(--kr-gradient);
+  z-index: 10;
+  pointer-events: none;
+}
+
+/* ---------------------------------------------------------------------------
+ * Typography
+ * ------------------------------------------------------------------------ */
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4,
+.reveal h5,
+.reveal h6 {
+  margin: var(--r-heading-margin);
+  color: var(--r-heading-color);
+  font-family: var(--r-heading-font);
+  font-weight: var(--r-heading-font-weight);
+  line-height: var(--r-heading-line-height);
+  letter-spacing: var(--r-heading-letter-spacing);
+  text-transform: var(--r-heading-text-transform);
+  text-shadow: var(--r-heading-text-shadow);
+  word-wrap: break-word;
+}
+
+.reveal h1 { font-size: var(--r-heading1-size); }
+.reveal h2 { font-size: var(--r-heading2-size); }
+.reveal h3 { font-size: var(--r-heading3-size); font-weight: 700; }
+.reveal h4 { font-size: var(--r-heading4-size); font-weight: 700; }
+
+/* Signature red underline on slide titles */
+.reveal h2::after {
+  content: '';
+  display: block;
+  width: 1.6em;
+  height: 0.09em;
+  margin-top: 0.22em;
+  background: var(--kr-red);
+  border-radius: 2px;
+}
+
+.reveal h2.no-rule::after,
+.reveal .impact h2::after,
+.reveal .divider h2::after {
+  display: none;
+}
+
+/* Small red uppercase label above a heading */
+.reveal .kicker {
+  display: block;
+  font-size: 0.55em;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--kr-red);
+  margin-bottom: 0.6em;
+}
+
+/* Text-only stand-in for the logo until official art lands in public/images/ */
+.reveal .wordmark {
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+.reveal .wordmark .kirby { color: var(--kr-red); }
+.reveal .wordmark .risk { color: var(--kr-gray); }
+
+.reveal p { margin: var(--r-block-margin) 0; }
+.reveal strong, .reveal b { font-weight: 700; }
+.reveal em { font-style: italic; }
+.reveal .muted { color: var(--kr-gray); }
+.reveal .accent { color: var(--kr-red); }
+.reveal .small { font-size: 0.62em; }
+
+.reveal a {
+  color: var(--r-link-color);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+.reveal a:hover {
+  color: var(--r-link-color-hover);
+  text-decoration: underline;
+}
+
+/* ---------------------------------------------------------------------------
+ * Lists
+ * ------------------------------------------------------------------------ */
+.reveal ul,
+.reveal ol {
+  display: inline-block;
+  text-align: left;
+  margin: 0 0 0 1em;
+}
+.reveal ul { list-style-type: none; }
+.reveal ul > li {
+  position: relative;
+  padding-left: 0.85em;
+  margin: 0.35em 0;
+}
+.reveal ul > li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.5em;
+  width: 0.38em;
+  height: 0.38em;
+  border-radius: 1px;
+  background: var(--kr-red);
+}
+.reveal ul ul > li::before { background: var(--kr-gray); }
+.reveal ol { list-style-type: decimal; }
+.reveal ol > li::marker { color: var(--kr-red); font-weight: 700; }
+.reveal ol > li { margin: 0.35em 0; padding-left: 0.2em; }
+
+/* ---------------------------------------------------------------------------
+ * Quotes, code, tables, images
+ * ------------------------------------------------------------------------ */
+.reveal blockquote {
+  display: block;
+  width: 85%;
+  margin: var(--r-block-margin) auto;
+  padding: 0.5em 1em;
+  text-align: left;
+  font-style: italic;
+  color: var(--kr-gray);
+  border-left: 0.14em solid var(--kr-red);
+  background: var(--kr-white);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.07);
+  border-radius: 0 8px 8px 0;
+}
+.reveal blockquote cite {
+  display: block;
+  margin-top: 0.5em;
+  font-style: normal;
+  font-size: 0.6em;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--kr-red);
+}
+
+.reveal pre {
+  display: block;
+  position: relative;
+  width: 95%;
+  margin: var(--r-block-margin) auto;
+  font-family: var(--r-code-font);
+  font-size: 0.5em;
+  line-height: 1.45;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+}
+.reveal pre code {
+  display: block;
+  padding: 14px 18px;
+  overflow: auto;
+  max-height: 460px;
+  word-wrap: normal;
+  border-radius: 10px;
+}
+.reveal code {
+  font-family: var(--r-code-font);
+  background: var(--kr-line);
+  color: var(--kr-red-dark);
+  padding: 0.05em 0.3em;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+.reveal pre code { background: #2b2b2b; color: #f8f8f2; }
+
+.reveal table {
+  margin: auto;
+  border-collapse: collapse;
+  border-spacing: 0;
+  font-size: 0.7em;
+}
+.reveal table th {
+  font-weight: 700;
+  color: var(--kr-white);
+  background: var(--kr-charcoal);
+}
+.reveal table th,
+.reveal table td {
+  text-align: left;
+  padding: 0.35em 0.7em;
+  border-bottom: 1px solid var(--kr-line);
+}
+.reveal table tbody tr:nth-child(even) { background: var(--kr-light); }
+
+.reveal img { max-width: 100%; max-height: 100%; }
+.reveal .kr-shadow {
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.18);
+  border-radius: 10px;
+}
+.reveal .rounded { border-radius: 10px; }
+
+/* ---------------------------------------------------------------------------
+ * Slide variants — pair with the gradients shown in the header comment
+ * ------------------------------------------------------------------------ */
+/* .impact — for the warm-red gradient background. Title + closing slides. */
+.reveal .slides section.impact,
+.reveal .slides section.impact h1,
+.reveal .slides section.impact h2,
+.reveal .slides section.impact h3 {
+  color: var(--kr-white);
+}
+.reveal .slides section.impact {
+  text-align: center;
+}
+.reveal .slides section.impact .kicker { color: rgba(255, 255, 255, 0.85); }
+.reveal .slides section.impact .muted { color: rgba(255, 255, 255, 0.72); }
+.reveal .slides section.impact a { color: var(--kr-white); text-decoration: underline; }
+.reveal .slides section.impact ul > li::before { background: var(--kr-white); }
+
+/* .divider — for the charcoal gradient background. Section breaks. */
+.reveal .slides section.divider,
+.reveal .slides section.divider h1,
+.reveal .slides section.divider h2 {
+  color: var(--kr-white);
+}
+.reveal .slides section.divider { text-align: center; }
+.reveal .slides section.divider .kicker { color: #e06a55; }
+.reveal .slides section.divider .muted { color: rgba(255, 255, 255, 0.6); }
+
+/* ---------------------------------------------------------------------------
+ * Layout helpers
+ * ------------------------------------------------------------------------ */
+.reveal .cols {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+  justify-content: center;
+}
+.reveal .cols.middle { align-items: center; }
+.reveal .col { flex: 1; min-width: 0; }
+.reveal .col-2 { flex: 2; }
+
+/* White card panel */
+.reveal .kr-card {
+  background: var(--kr-white);
+  border: 1px solid var(--kr-line);
+  border-top: 0.14em solid var(--kr-red);
+  border-radius: 10px;
+  padding: 0.7em 0.9em;
+  box-shadow: 0 8px 26px rgba(0, 0, 0, 0.07);
+  font-size: 0.72em;
+}
+.reveal .kr-card h3 { margin-bottom: 0.35em; }
+
+/* Big-number stats: <div class="stat-row"><div class="stat"><span class="stat-number">…</span><span class="stat-label">…</span></div>…</div> */
+.reveal .stat-row {
+  display: flex;
+  gap: 48px;
+  justify-content: center;
+  align-items: stretch;
+  text-align: center;
+  margin: 0.6em 0;
+}
+.reveal .stat { flex: 1; }
+.reveal .stat-number {
+  display: block;
+  font-size: 2.3em;
+  font-weight: 900;
+  line-height: 1;
+  color: var(--kr-red);
+  letter-spacing: -0.03em;
+}
+.reveal .stat-label {
+  display: block;
+  margin-top: 0.45em;
+  font-size: 0.52em;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--kr-gray);
+}
+.reveal .impact .stat-number { color: var(--kr-white); }
+.reveal .impact .stat-label { color: rgba(255, 255, 255, 0.78); }
+
+/* Horizontal timeline: <ul class="timeline"><li><b>Month 1</b>Onboarding</li>…</ul> */
+.reveal ul.timeline {
+  display: flex;
+  margin: 1.2em 0 0 0;
+  padding: 0;
+  gap: 0;
+  width: 100%;
+}
+.reveal ul.timeline > li {
+  flex: 1;
+  position: relative;
+  padding: 0.9em 0.4em 0 0.4em;
+  margin: 0;
+  text-align: center;
+  font-size: 0.55em;
+  border-top: 3px solid var(--kr-line);
+}
+.reveal ul.timeline > li::before {
+  content: '';
+  position: absolute;
+  top: -8.5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--kr-red);
+  border: 3px solid var(--r-background-color);
+}
+.reveal ul.timeline > li b {
+  display: block;
+  font-size: 1em;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--kr-red);
+  margin-bottom: 0.3em;
+}
+
+/* Chips: <div class="tags"><span class="tag">Active Directory</span>…</div> */
+.reveal .tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  margin: 0.5em 0;
+}
+.reveal .tag {
+  font-size: 0.5em;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  padding: 0.35em 0.9em;
+  border-radius: 999px;
+  background: var(--kr-white);
+  border: 1.5px solid var(--kr-line);
+  color: var(--kr-charcoal);
+}
+.reveal .tag.hot {
+  background: var(--kr-red);
+  border-color: var(--kr-red);
+  color: var(--kr-white);
+}
+
+/* ---------------------------------------------------------------------------
+ * Custom fragments (see the reveal-animations skill)
+ * ------------------------------------------------------------------------ */
+/* Brand-red text highlight; pair with class="fragment custom highlight-kr" */
+.reveal .fragment.custom.highlight-kr { opacity: 1; visibility: inherit; }
+.reveal .fragment.custom.highlight-kr.visible {
+  color: var(--kr-red);
+  font-weight: 700;
+}
+
+/* Scale + fade entrance; class="fragment scale-in" */
+.reveal .fragment.scale-in {
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0.6);
+  transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.reveal .fragment.scale-in.visible {
+  opacity: 1;
+  visibility: inherit;
+  transform: scale(1);
+}
+
+/* Subtle continuous pulse for one hero element; class="kr-pulse" */
+@keyframes kr-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.045); }
+}
+.reveal .kr-pulse { animation: kr-pulse 2.4s ease-in-out infinite; }
+
+/* ---------------------------------------------------------------------------
+ * Chrome: progress, controls, slide number
+ * ------------------------------------------------------------------------ */
+.reveal .progress {
+  height: 4px;
+  color: var(--kr-red);
+  background: rgba(0, 0, 0, 0.08);
+}
+.reveal .controls { color: var(--kr-red); }
+.reveal .slide-number {
+  background: transparent;
+  color: var(--kr-gray);
+  font-family: var(--r-main-font);
+  font-size: 16px;
+  font-weight: 700;
+  right: 18px;
+  bottom: 14px;
+}
+
+/* ---------------------------------------------------------------------------
+ * Print / PDF export
+ * ------------------------------------------------------------------------ */
+@media print {
+  .reveal-viewport::after { display: none; }
+}
