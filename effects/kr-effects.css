@@ -1,0 +1,323 @@
+/**
+ * kr-effects.css — Kirby Risk signature animation library for reveal.js
+ *
+ * Ships inside the kr-effects skill. To use: copy to effects/kr-effects.css
+ * and link it in index.html AFTER the theme stylesheet (see SKILL.md).
+ *
+ * Motion language: electricity. Power-ups, current flow, sparks, glow.
+ * Every effect uses brand tokens with fallbacks, so the file also works
+ * standalone. Entrance effects are scoped to `section.present` so they
+ * REPLAY every time you re-enter the slide.
+ *
+ * Timing overrides per element (every effect respects these):
+ *   style="--kr-delay: .4s; --kr-duration: 1.5s"
+ */
+
+/* =============================================================
+ * ENTRANCES — run automatically when the slide becomes visible
+ * ============================================================= */
+
+/* .kr-power-on — element flickers to life like a breaker flipping.
+   Use on ONE hero element (usually the title slide h1). */
+@keyframes kr-power-on {
+  0%   { opacity: 0; filter: brightness(3) blur(6px); }
+  8%   { opacity: 1; filter: brightness(3); }
+  12%  { opacity: 0.2; }
+  20%  { opacity: 1; filter: brightness(2); }
+  26%  { opacity: 0.35; }
+  36%  { opacity: 1; filter: brightness(1.6); }
+  42%  { opacity: 0.7; }
+  100% { opacity: 1; filter: brightness(1) blur(0); }
+}
+.reveal .slides section.present:not(:has(> section)) .kr-power-on {
+  animation: kr-power-on var(--kr-duration, 1.2s) steps(1, end) both;
+  animation-delay: var(--kr-delay, 0.2s);
+}
+
+/* .kr-rise — simple fade-up entrance (no keypress needed, unlike fragments) */
+@keyframes kr-rise {
+  from { opacity: 0; transform: translateY(26px); }
+  to   { opacity: 1; transform: none; }
+}
+.reveal .slides section.present:not(:has(> section)) .kr-rise {
+  animation: kr-rise var(--kr-duration, 0.7s) cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  animation-delay: var(--kr-delay, 0.15s);
+}
+
+/* .kr-stagger — children cascade in automatically, top to bottom /
+   left to right. Great for tag rows, card trios, bullet groups you
+   don't want to click through. Step size: --kr-stagger-step. */
+.kr-stagger > :nth-child(1)  { --kr-i: 0; }
+.kr-stagger > :nth-child(2)  { --kr-i: 1; }
+.kr-stagger > :nth-child(3)  { --kr-i: 2; }
+.kr-stagger > :nth-child(4)  { --kr-i: 3; }
+.kr-stagger > :nth-child(5)  { --kr-i: 4; }
+.kr-stagger > :nth-child(6)  { --kr-i: 5; }
+.kr-stagger > :nth-child(7)  { --kr-i: 6; }
+.kr-stagger > :nth-child(8)  { --kr-i: 7; }
+.kr-stagger > :nth-child(9)  { --kr-i: 8; }
+.kr-stagger > :nth-child(10) { --kr-i: 9; }
+.reveal .slides section.present:not(:has(> section)) .kr-stagger > * {
+  animation: kr-rise var(--kr-duration, 0.6s) cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  animation-delay: calc(var(--kr-delay, 0.2s) + var(--kr-i, 0) * var(--kr-stagger-step, 0.09s));
+}
+
+/* .kr-cascade — pair with data-kr-split="letters|words" (kr-effects.js
+   wraps each unit in a span with --kr-i). Kinetic typography. */
+@keyframes kr-cascade-in {
+  from { opacity: 0; transform: translateY(0.35em) scale(0.9); filter: blur(3px); }
+  to   { opacity: 1; transform: none; filter: none; }
+}
+.reveal .slides section.present:not(:has(> section)) .kr-cascade .kr-split-unit {
+  display: inline-block;
+  animation: kr-cascade-in var(--kr-duration, 0.5s) cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  animation-delay: calc(var(--kr-delay, 0.15s) + var(--kr-i, 0) * var(--kr-cascade-step, 0.045s));
+}
+.kr-split-unit { white-space: pre; }
+
+/* =============================================================
+ * LOOPS — ambient motion. ONE per slide, maximum.
+ * ============================================================= */
+
+/* .kr-glow — pulsing electrical glow on text */
+@keyframes kr-glow {
+  0%, 100% { text-shadow: 0 0 6px rgba(191, 49, 26, 0.35), 0 0 22px rgba(191, 49, 26, 0.25); }
+  50%      { text-shadow: 0 0 10px rgba(191, 49, 26, 0.6), 0 0 42px rgba(191, 49, 26, 0.45), 0 0 80px rgba(191, 49, 26, 0.25); }
+}
+.reveal section.present .kr-glow {
+  animation: kr-glow calc(var(--kr-duration, 1s) * 2.6) ease-in-out infinite;
+}
+/* white-hot variant for text on red/charcoal backgrounds */
+@keyframes kr-glow-white {
+  0%, 100% { text-shadow: 0 0 8px rgba(255, 255, 255, 0.3), 0 0 26px rgba(255, 177, 153, 0.3); }
+  50%      { text-shadow: 0 0 14px rgba(255, 255, 255, 0.55), 0 0 52px rgba(255, 177, 153, 0.5); }
+}
+.reveal section.present .impact .kr-glow,
+.reveal section.present .divider .kr-glow,
+.reveal section.present .kr-glow.white {
+  animation-name: kr-glow-white;
+}
+
+/* .kr-shimmer — metallic light sweep across text */
+@keyframes kr-shimmer {
+  from { background-position: 200% center; }
+  to   { background-position: -200% center; }
+}
+.reveal section.present .kr-shimmer {
+  background: linear-gradient(
+    100deg,
+    currentColor 42%,
+    var(--kr-shimmer-color, #ffb199) 50%,
+    currentColor 58%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: kr-shimmer calc(var(--kr-duration, 1s) * 3.2) linear infinite;
+}
+
+/* .kr-wire — a conductor with current flowing through it.
+   Use as a divider: <div class="kr-wire"></div>  */
+@keyframes kr-current {
+  from { background-position: 0 0; }
+  to   { background-position: 56px 0; }
+}
+.kr-wire {
+  height: 4px;
+  width: 100%;
+  border-radius: 2px;
+  margin: 0.6em 0;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      var(--kr-red, #bf311a) 0 34px,
+      var(--kr-wire-spark, #ffb199) 34px 42px,
+      var(--kr-red, #bf311a) 42px 56px
+    );
+  background-size: 56px 100%;
+}
+.reveal section.present .kr-wire {
+  animation: kr-current calc(var(--kr-duration, 1s) * 0.9) linear infinite;
+}
+
+/* .kr-pulse also lives in the theme; alias here for standalone use */
+@keyframes kr-pulse-fx {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.045); }
+}
+.reveal section.present .kr-pulse-fx { animation: kr-pulse-fx 2.4s ease-in-out infinite; }
+
+/* =============================================================
+ * SVG DRAW-ON — strokes draw themselves when the slide appears
+ * =============================================================
+ * Markup requirement: every <path>/<line>/<circle> to animate gets
+ *   pathLength="1"  (normalizes length so the CSS works for any shape)
+ * Stagger strokes with inline --kr-i on each path.               */
+.kr-draw path, .kr-draw line, .kr-draw circle, .kr-draw rect, .kr-draw polyline {
+  fill: none;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+}
+@keyframes kr-draw-stroke { to { stroke-dashoffset: 0; } }
+.reveal .slides section.present:not(:has(> section)) .kr-draw path,
+.reveal .slides section.present:not(:has(> section)) .kr-draw line,
+.reveal .slides section.present:not(:has(> section)) .kr-draw circle,
+.reveal .slides section.present:not(:has(> section)) .kr-draw rect,
+.reveal .slides section.present:not(:has(> section)) .kr-draw polyline {
+  animation: kr-draw-stroke var(--kr-duration, 1.4s) ease-in-out both;
+  animation-delay: calc(var(--kr-delay, 0.3s) + var(--kr-i, 0) * 0.35s);
+}
+
+/* =============================================================
+ * CUSTOM FRAGMENTS — reveal on keypress (class="fragment kr-…")
+ * ============================================================= */
+
+/* wipe: content revealed by a moving mask, left to right */
+.reveal .fragment.kr-wipe {
+  opacity: 1;
+  visibility: inherit;
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path var(--kr-duration, 0.7s) cubic-bezier(0.65, 0, 0.35, 1);
+}
+.reveal .fragment.kr-wipe.visible { clip-path: inset(0 0 0 0); }
+
+/* blur-in: snaps into focus */
+.reveal .fragment.kr-blur-in {
+  opacity: 0;
+  visibility: hidden;
+  filter: blur(14px);
+  transform: scale(1.06);
+  transition: all var(--kr-duration, 0.55s) ease-out;
+}
+.reveal .fragment.kr-blur-in.visible {
+  opacity: 1;
+  visibility: inherit;
+  filter: blur(0);
+  transform: none;
+}
+
+/* flip: swings in like a switch being thrown */
+.reveal .fragment.kr-flip {
+  opacity: 0;
+  visibility: hidden;
+  transform: perspective(900px) rotateY(70deg);
+  transform-origin: left center;
+  transition: all var(--kr-duration, 0.6s) cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.reveal .fragment.kr-flip.visible {
+  opacity: 1;
+  visibility: inherit;
+  transform: perspective(900px) rotateY(0);
+}
+
+/* jolt: lands with an electric thump (for the one number that matters) */
+@keyframes kr-jolt-in {
+  0%   { opacity: 0; transform: scale(2.4); filter: blur(8px) brightness(2.5); }
+  55%  { opacity: 1; transform: scale(0.96); filter: blur(0) brightness(1.4); }
+  70%  { transform: scale(1.03); }
+  100% { opacity: 1; transform: scale(1); filter: none; }
+}
+.reveal .fragment.kr-jolt { opacity: 0; visibility: hidden; }
+.reveal .fragment.kr-jolt.visible {
+  opacity: 1;
+  visibility: inherit;
+  animation: kr-jolt-in var(--kr-duration, 0.55s) ease-out both;
+}
+
+/* =============================================================
+ * TERMINAL — the IT-guy prop. Pair with data-kr-type (kr-effects.js)
+ * ============================================================= */
+.kr-terminal {
+  background: #16181d;
+  border-radius: 10px;
+  box-shadow: 0 16px 44px rgba(0, 0, 0, 0.35);
+  font-family: var(--r-code-font, 'Roboto Mono', Consolas, monospace);
+  font-size: 0.5em;
+  text-align: left;
+  overflow: hidden;
+  margin: 0.6em auto;
+  width: 92%;
+}
+.kr-terminal .kr-terminal-bar {
+  display: flex;
+  gap: 7px;
+  padding: 11px 14px;
+  background: #23262d;
+}
+.kr-terminal .kr-terminal-bar i {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #3d414b;
+}
+.kr-terminal .kr-terminal-bar i:first-child { background: var(--kr-red, #bf311a); }
+.kr-terminal .kr-terminal-body {
+  padding: 16px 20px 20px;
+  line-height: 1.65;
+  color: #d7dae0;
+  min-height: 5em;
+}
+.kr-terminal .kr-prompt { color: #7ee081; }
+.kr-terminal .kr-path { color: #6fb3e0; }
+/* blinking caret while kr-effects.js is typing */
+@keyframes kr-caret-blink { 0%, 55% { opacity: 1; } 56%, 100% { opacity: 0; } }
+.kr-typing::after {
+  content: '▍';
+  color: var(--kr-wire-spark, #ffb199);
+  animation: kr-caret-blink 0.75s step-end infinite;
+}
+
+/* =============================================================
+ * KEN BURNS — slow drift on photo backgrounds.
+ * Put data-state="kenburns" AND data-background-image on the section.
+ * ============================================================= */
+@keyframes kr-kenburns {
+  from { transform: scale(1); }
+  to   { transform: scale(1.09) translate(1.2%, -1%); }
+}
+body.kenburns .slide-background.present .slide-background-content,
+html.kenburns .slide-background.present .slide-background-content,
+.reveal-viewport.kenburns .slide-background.present .slide-background-content {
+  animation: kr-kenburns 16s ease-in-out infinite alternate;
+}
+
+/* =============================================================
+ * ACCESSIBILITY & PRINT — effects get out of the way
+ * ============================================================= */
+@media (prefers-reduced-motion: reduce) {
+  .reveal [class*='kr-'],
+  .reveal [class*='kr-'] *,
+  .kr-stagger > *,
+  .kr-cascade .kr-split-unit {
+    animation-duration: 0.01s !important;
+    animation-delay: 0s !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01s !important;
+  }
+}
+@media print {
+  /* Non-fragment effects render their final state on every page… */
+  .reveal [class*='kr-']:not(.fragment),
+  .reveal [class*='kr-']:not(.fragment) *,
+  .kr-stagger > *,
+  .kr-cascade .kr-split-unit {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    clip-path: none !important;
+    filter: none !important;
+    transform: none !important;
+  }
+  /* …while fragments keep reveal's own per-page visibility logic (a PDF
+     export makes one page per fragment step) — just without motion. */
+  .reveal .fragment[class*='kr-'] {
+    animation: none !important;
+    transition: none !important;
+  }
+  .kr-draw path, .kr-draw line, .kr-draw circle, .kr-draw rect, .kr-draw polyline {
+    animation: none !important;
+    stroke-dasharray: none;
+    stroke-dashoffset: 0;
+  }
+}

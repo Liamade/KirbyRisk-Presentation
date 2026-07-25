@@ -3,27 +3,722 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Kirby Risk Presentation</title>
+    <title>Kirby Risk — Systems &amp; Automation Internship</title>
 
     <link rel="stylesheet" href="node_modules/reveal.js/dist/reset.css" />
     <link rel="stylesheet" href="node_modules/reveal.js/dist/reveal.css" />
-    <link rel="stylesheet" href="node_modules/reveal.js/dist/theme/black.css" id="theme" />
+    <!-- Roboto self-hosted (@fontsource) — no network dependency, so the deck
+         paints instantly even offline. Mono weights omitted: no code slides. -->
+    <link rel="stylesheet" href="node_modules/@fontsource/roboto/400.css" />
+    <link rel="stylesheet" href="node_modules/@fontsource/roboto/400-italic.css" />
+    <link rel="stylesheet" href="node_modules/@fontsource/roboto/500.css" />
+    <link rel="stylesheet" href="node_modules/@fontsource/roboto/700.css" />
+    <link rel="stylesheet" href="node_modules/@fontsource/roboto/900.css" />
+    <link rel="stylesheet" href="theme/kirby-risk.css" id="theme" />
+    <link rel="stylesheet" href="effects/kr-effects.css" />
   </head>
   <body>
     <div class="reveal">
       <div class="slides">
-        <section>
-          <h1>Kirby Risk</h1>
-          <p>Presentation foundation is working.</p>
-          <aside class="notes">Speaker notes go here (press S).</aside>
+        <!-- ================================================================
+             KIRBY RISK INTERNSHIP DECK — 15 min · built from Presentation-Outline.md
+             Outline slide ↔ section map: slides 6 and 10 are auto-animate PAIRS,
+             plus one 5-sec divider before the platform arc → 18 <section>s total.
+
+             TODO LEDGER — real facts only you can fill (never invented here):
+               [ ] Slide 1  — name display, internship dates, total hours
+               [ ] Slide 4  — the script/tool count X (then switch on the counter
+                              markup, see comment there) + real script names in
+                              the four buckets (dashed chips are placeholders)
+               [ ] Slide 6  — .NET findings count before ("X" on slide 6a) —
+                              pull from Tenable
+               [ ] Slide 9  — screenshot(s) → public/images/onboarding-after.png
+                              (+ optional onboarding-before.png)
+               [ ] Slide 10 — confirm SEVEN checks vs eight (test job in ci.yaml?
+                              → add a "tests" chip and say eight)
+               [ ] Slide 13 — optional counts (procedures, reviewers) as chips
+               [ ] Slide 15 — same X as slide 4
+             ⚠ CONFIRM-before-saying items live in each slide's speaker notes.
+             ================================================================ -->
+
+        <!-- ===== SLIDE 1 (20s): TITLE ===== -->
+        <section
+          class="impact"
+          data-background-gradient="linear-gradient(135deg, #bf311a 0%, #8e2413 60%, #6d1b0e 100%)"
+          data-kr-sparks="70"
+        >
+          <p class="small" style="letter-spacing: 0.28em; text-transform: uppercase; opacity: 0.85; margin-bottom: 1.4em">
+            Kirby Risk · Est. 1926 · 100 Years in 2026
+          </p>
+          <!-- TODO: confirm name display -->
+          <h1 class="kr-power-on" style="font-size: 3em; margin-bottom: 0.12em">Liam Callahan</h1>
+          <p class="kr-rise" style="--kr-delay: 1.4s; font-size: 0.85em; font-weight: 700; letter-spacing: 0.06em; margin: 0.2em 0">
+            Systems &amp; Automation Intern
+          </p>
+          <!-- TODO: real dates + total hours -->
+          <p class="kr-rise muted" style="--kr-delay: 1.65s; font-size: 0.55em; letter-spacing: 0.12em; text-transform: uppercase">
+            [Month] – [Month] 2026 · [###] hours
+          </p>
+          <aside class="notes">
+            <strong>20 sec (trim to 15).</strong> Your name, the role, done.
+            <em>Do not editorialize on the title slide.</em>
+          </aside>
         </section>
+
+        <!-- ===== SLIDE 2 (40s): THE ENVIRONMENT ===== -->
         <section>
-          <h2>Slide Two</h2>
-          <p>Use arrow keys or space to navigate.</p>
+          <span class="kicker">The Environment</span>
+          <h2>The scale that makes it matter</h2>
+          <div class="stat-row" style="margin-top: 0.35em">
+            <div class="stat">
+              <span class="stat-number" style="font-size: 3em" data-kr-count="1600" data-kr-count-suffix="+" data-kr-count-duration="1.8">1,600+</span>
+              <span class="stat-label">Windows computers</span>
+            </div>
+            <div class="stat">
+              <span class="stat-number" style="font-size: 3em" data-kr-count="40" data-kr-count-suffix="+" data-kr-count-duration="1.8">40+</span>
+              <span class="stat-label">Locations · IN · IL · OH · GA</span>
+            </div>
+          </div>
+          <div class="cols" style="margin-top: 0.4em">
+            <div class="col kr-card fragment scale-in">
+              <h3>Tenable</h3>
+              <p style="margin: 0">Scans every machine — finds what’s outdated or vulnerable.</p>
+            </div>
+            <div class="col kr-card fragment scale-in">
+              <h3>NinjaOne</h3>
+              <p style="margin: 0">Reaches all 1,600 — how anything actually gets fixed.</p>
+            </div>
+          </div>
+          <p class="fragment fade-up" style="text-align: center; font-size: 0.66em; margin-top: 0.6em">
+            The scanner finds a problem on <b>hundreds</b> of machines. Someone fixes them <b>one at a time, by hand</b>.<br />
+            <span class="accent" style="font-weight: 900">That gap is what I spent the internship closing.</span>
+          </p>
+          <aside class="notes">
+            <strong>40 sec.</strong> Scale first, out loud, slowly: “Kirby Risk runs about
+            <strong>1,600 Windows computers</strong> across multiple sites.” This number makes every later
+            slide land.<br /><br />
+            Gloss both tools ONCE, never explain them again: “Tenable scans every machine and tells us
+            what’s out of date or vulnerable. NinjaOne is how we reach all 1,600 machines to actually fix it.”<br /><br />
+            Then the gap: “The scanner tells you something’s broken on hundreds of machines. Then somebody
+            fixes them one at a time, by hand. That gap is what I spent the internship closing.”
+          </aside>
         </section>
+
+        <!-- ===== SLIDE 3 (15s): ROADMAP ===== -->
+        <section class="center-text">
+          <span class="kicker">The Map</span>
+          <h2 class="no-rule">Three areas of work</h2>
+          <div class="cols kr-stagger" style="margin-top: 0.5em">
+            <div class="col kr-card center-text">
+              <h3>Endpoint automation</h3>
+              <p class="muted" style="margin: 0">The machines</p>
+            </div>
+            <div class="col kr-card center-text">
+              <h3>Internal tools</h3>
+              <p class="muted" style="margin: 0">The people</p>
+            </div>
+            <div class="col kr-card center-text">
+              <h3>Developer platform</h3>
+              <p class="muted" style="margin: 0">The code</p>
+            </div>
+          </div>
+          <p class="fragment kr-blur-in" style="margin-top: 0.9em; font-size: 1.05em; font-weight: 900">
+            Everything I built <span class="accent">runs without me.</span>
+          </p>
+          <aside class="notes">
+            <strong>15 sec — no more.</strong> Name the three areas. Say the thesis once. Move on.
+            It buys audience patience and gives them a frame to hang everything on.
+          </aside>
+        </section>
+
+        <!-- ===== SLIDE 4 (45s): THE BODY OF WORK ===== -->
         <section>
-          <section><h2>Vertical Stack</h2><p>Press down for nested slides.</p></section>
-          <section><h2>Nested Slide</h2></section>
+          <span class="kicker">The Body of Work</span>
+          <h2>What the internship produced</h2>
+          <div class="cols middle" style="margin-top: 0.3em">
+            <div class="col center-text" style="flex: 0 0 300px">
+              <!-- TODO: real count. When you have it, replace the X with:
+                   <span class="stat-number" style="font-size:3.4em" data-kr-count="NN">NN</span> -->
+              <span class="stat-number" style="font-size: 3.4em">X</span>
+              <span class="stat-label">scripts &amp; tools</span>
+            </div>
+            <div class="col-2">
+              <div class="kr-stagger" style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px 22px">
+                <!-- TODO: replace dashed placeholder chips with REAL script names
+                     (rename cryptic internal jargon for the room, or leave it out).
+                     Add/remove chips freely — grouping by bucket is the point. -->
+                <div>
+                  <h4 style="font-size: 0.5em; letter-spacing: 0.12em; text-transform: uppercase; color: var(--kr-red); margin-bottom: 0.35em">Fleet remediation</h4>
+                  <div class="tags" style="justify-content: flex-start; gap: 8px; margin: 0">
+                    <span class="tag todo">script name</span><span class="tag todo">script name</span><span class="tag todo">script name</span>
+                  </div>
+                </div>
+                <div>
+                  <h4 style="font-size: 0.5em; letter-spacing: 0.12em; text-transform: uppercase; color: var(--kr-red); margin-bottom: 0.35em">Machine lifecycle</h4>
+                  <div class="tags" style="justify-content: flex-start; gap: 8px; margin: 0">
+                    <span class="tag todo">script name</span><span class="tag todo">script name</span><span class="tag todo">script name</span>
+                  </div>
+                </div>
+                <div>
+                  <h4 style="font-size: 0.5em; letter-spacing: 0.12em; text-transform: uppercase; color: var(--kr-red); margin-bottom: 0.35em">Security troubleshooting</h4>
+                  <div class="tags" style="justify-content: flex-start; gap: 8px; margin: 0">
+                    <span class="tag todo">script name</span><span class="tag todo">script name</span><span class="tag todo">script name</span>
+                  </div>
+                </div>
+                <div>
+                  <h4 style="font-size: 0.5em; letter-spacing: 0.12em; text-transform: uppercase; color: var(--kr-red); margin-bottom: 0.35em">Process automation</h4>
+                  <div class="tags" style="justify-content: flex-start; gap: 8px; margin: 0">
+                    <span class="tag todo">script name</span><span class="tag todo">script name</span><span class="tag todo">script name</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="fragment fade-up" style="text-align: center; font-size: 0.75em; margin-top: 0.55em">
+            Most are small and specific. <span class="accent" style="font-weight: 900">Two grew into projects of their own.</span>
+          </p>
+          <aside class="notes">
+            <strong>45 sec.</strong> Do NOT read the names out loud — the slide does that. Say:
+            “Over the internship I wrote <strong>X</strong> automation scripts and tools. They fall into a
+            few buckets: fixing security findings across the fleet, managing the lifecycle of a machine from
+            setup through decommission, troubleshooting Windows-level security problems, and automating
+            processes that were being done by hand.”<br /><br />
+            ⭐ The pivot — the whole point of the slide: “Most of these are small and specific.
+            <strong>Two of them grew big enough to be their own projects</strong>, and those are the two I
+            want to walk through.”<br /><br />
+            ⚠ CONFIRM: exact count (include the two big ones — “X scripts and tools, two of which grew into
+            full projects”).
+          </aside>
+        </section>
+
+        <!-- ===== SLIDE 5 (80s — never cut): .NET — THE BUILD ===== -->
+        <section>
+          <span class="kicker">Project 1 of 5 · .NET Remediation Framework</span>
+          <h2>The problem that kept coming back</h2>
+          <p style="font-size: 0.62em; margin: 0.3em 0">
+            .NET is a Microsoft component most business software depends on. Old versions have security holes.
+            Ours were outdated across the fleet — <b>flagged every scan, fixed by hand every time.</b>
+          </p>
+          <div class="kr-flow kr-stagger" style="margin-top: 0.5em">
+            <span class="kr-step">find everything</span><span class="kr-arrow">→</span>
+            <span class="kr-step">decide what’s wrong</span><span class="kr-arrow">→</span>
+            <span class="kr-step">install</span><span class="kr-arrow">→</span>
+            <span class="kr-step">remove</span><span class="kr-arrow">→</span>
+            <span class="kr-step">verify</span><span class="kr-arrow">→</span>
+            <span class="kr-step">report</span>
+          </div>
+          <div class="kr-wire" style="width: 58%; margin: 0.25em auto 0.5em"></div>
+          <ol style="font-size: 0.62em; margin-top: 0.3em">
+            <li class="fragment fade-in-then-semi-out">
+              Finds .NET in <b class="accent">five</b> different places — including the one only the
+              security scanner was reading. I learned how the scanner looks, and taught my tool to look there too.
+            </li>
+            <li class="fragment fade-in-then-semi-out">
+              <b>Asks Microsoft what “current” means — every run.</b> Downloads it, verifies it’s authentic,
+              installs it. New releases need zero edits. “Too old” is a setting, not code.
+            </li>
+            <li class="fragment fade-in-then-semi-out">
+              <b>Never removes an old version</b> until a newer one is confirmed working — and every
+              destructive action defaults to <b>dry run</b>.
+            </li>
+          </ol>
+          <aside class="notes">
+            <strong>80 sec — NEVER cut.</strong> Problem in one sentence, then walk the pipeline in ONE pass —
+            don’t stop on any box.<br /><br />
+            ① Say <strong>“five.”</strong> The specific number is the credibility.<br />
+            ② ⭐ Strongest thesis-payoff line: “…which is why nobody has to update the tool when Microsoft
+            ships a new release — <strong>it already knows</strong>.” And: “what counts as ‘too old’ is a
+            setting, not something buried in the code.”<br />
+            ③ The safety rule: “It never removes an old version until it has confirmed a newer one is
+            installed and working. Every destructive action defaults to a dry run.”<br /><br />
+            <em>Language: say “framework,” not “script.”</em><br />
+            💬 Q&amp;A (not on slide): fifth spot = SWID tags under C:\Program Files\dotnet\swidtag\ — no
+            uninstall entry, needed a dedicated cleanup path. Other four: dotnet CLI, filesystem, setup
+            registry, uninstall registry.
+          </aside>
+        </section>
+
+        <!-- ===== SLIDE 6 (75s — never cut): .NET — IMPACT + WHAT BROKE [auto-animate pair] ===== -->
+        <section class="center-text" data-auto-animate data-auto-animate-id="dotnet">
+          <span class="kicker">Project 1 of 5 · .NET Remediation Framework</span>
+          <!-- TODO: replace X with the real starting findings count from Tenable -->
+          <h1 data-id="findings" class="accent" style="font-size: 4.4em; margin: 0.3em 0 0.1em">X</h1>
+          <p data-id="findings-label" class="muted" style="font-size: 0.62em; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase">
+            .NET findings · every scan · fixed by hand
+          </p>
+          <aside class="notes">
+            <strong>Beat 1 setup.</strong> “Before this existed, .NET findings were our most repetitive
+            vulnerability — flagged every scan, fixed by hand every time, and back again the next quarter
+            when Microsoft shipped a new version.”<br /><br />
+            ⚠ CONFIRM the number from Tenable, then advance →
+          </aside>
+        </section>
+        <section class="center-text" data-auto-animate data-auto-animate-id="dotnet">
+          <span class="kicker">Project 1 of 5 · .NET Remediation Framework</span>
+          <h1 data-id="findings" class="accent" style="font-size: 1.8em; margin: 0">0</h1>
+          <p data-id="findings-label" class="muted" style="font-size: 0.5em; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; margin: 0.1em 0 0.4em">
+            .NET findings — cleared, and held daily
+          </p>
+          <p class="fragment fade-up" style="font-size: 0.8em; margin: 0.2em 0">
+            It didn’t just clear the findings. <b class="accent">It closed the category.</b>
+          </p>
+          <div class="fragment fade-up kr-card" style="text-align: left; font-size: 0.56em; margin-top: 0.3em">
+            <h3 style="font-size: 1.1em">It didn’t go smoothly</h3>
+            <p style="margin: 0.2em 0">
+              Dell’s management software runs constantly on all 1,600 machines — and held a <b>lock on the exact
+              files</b> my cleanup was deleting. Half-removed pieces would surface as failures <em>later</em>.
+            </p>
+            <p style="margin: 0.2em 0">
+              <b>The rebuild: all-or-nothing.</b> If anything is in use, don’t delete a single file — mark it
+              “finish after reboot” and move on.
+            </p>
+          </div>
+          <p class="fragment kr-jolt" style="font-size: 0.92em; font-weight: 900; margin: 0.4em 0 0.2em">
+            At 1 machine, that’s a bug. At <span class="accent">1,600</span>, that’s an outage.
+          </p>
+          <div class="fragment fade-up kr-status">
+            <span class="kr-status-dot"></span><b>In production</b>&nbsp;· daily · 1,600+ computers · new releases handled on its own
+          </div>
+          <aside class="notes">
+            <strong>75 sec total — NEVER cut.</strong> Impact leads; Dell is a supporting beat.<br /><br />
+            “It cleared every .NET finding we had. And it keeps them cleared — it isn’t checking against a
+            version I typed in last spring, it’s checking against whatever Microsoft published this morning.
+            The fleet is current within a day and nobody files a ticket.”<br />
+            ⭐ Land it: “It didn’t just clear the findings. <strong>It closed the category.</strong> This
+            isn’t a vulnerability that comes back.” (Use “closed the category” — can’t be picked apart.)<br />
+            ⚠ Fill in: “Took it from X findings to zero, and it holds that line daily.”<br /><br />
+            <strong>Dell, compressed (~25s):</strong> locks on the exact files → removed what it could reach,
+            left what it couldn’t → surfaces later. Rebuilt all-or-nothing: check the whole folder first; if
+            anything’s in use, don’t delete a single file — “finish after reboot,” move on. Land “At one
+            machine, that’s a bug. At 1,600, that’s an outage” — <em>then stop.</em><br /><br />
+            Beat 3 (cut FIRST if over): “I almost missed it — my own error handling was swallowing the
+            reason. The run just said ‘failed.’ I fixed the logging first, and the real error was sitting
+            right there.”<br /><br />
+            Status line → then say: <strong>“and this runs without me.”</strong><br />
+            💬 Full Dell/TechHub detail, network-drop proof, silent no-op story: Presentation-Outline.md.
+          </aside>
+        </section>
+
+        <!-- ===== SLIDE 7 (65s — never cut): APPX — THE CAPABILITY GAP ===== -->
+        <section
+          class="divider"
+          data-background-gradient="linear-gradient(150deg, #2a2a2a 0%, #1a1a1a 70%)"
+        >
+          <span class="kicker">Project 2 of 5 · Windows App Automation</span>
+          <h2 style="font-size: 1.45em; margin-bottom: 0.15em">The Microsoft Store is blocked.</h2>
+          <p class="muted" style="font-size: 0.68em; margin-top: 0">
+            So there was <b style="color: #fff">no way</b> to install or update Windows apps across the fleet. For anyone.
+          </p>
+          <h1 class="fragment kr-jolt" style="font-size: 2.5em; margin: 0.4em 0 0.1em">I built the way.</h1>
+          <p class="fragment fade-up" style="font-size: 0.78em; color: rgba(255, 255, 255, 0.9); margin: 0.1em 0">
+            The team uses it now.
+          </p>
+          <p class="fragment fade-up muted" style="font-size: 0.52em; margin-top: 0.7em">
+            Pulled straight from where Microsoft actually keeps the apps — installed the way Windows installs
+            them underneath the Store.<br />
+            <b style="color: #fff">The only mechanism the company has for it.</b>
+          </p>
+          <aside class="notes">
+            <strong>65 sec — NEVER cut.</strong> ⭐ This exact framing, don’t soften it: “The Store is blocked
+            for security reasons, so there was no mechanism to install or update Windows apps across the
+            fleet. <strong>I built the way. The team uses it now.</strong>” — strongest sentence in the deck.
+            Say it, PAUSE, then explain.<br /><br />
+            Then plainly: “Rather than work around the Store, I went to the place Microsoft actually keeps
+            the apps and pulled them directly — then installed them the way Windows installs them underneath
+            the Store.”<br /><br />
+            Impact, not size: “Before this, the company had no way to do this at all. This is the only
+            mechanism that exists for it.” <em>Skip line counts.</em><br />
+            💬 Q&amp;A: Windows Update SOAP API + DISM provisioning; empty 1.0.0.0 placeholder packages need
+            the flag to pull the real payload.
+          </aside>
+        </section>
+
+        <!-- ===== SLIDE 8 (75s): APPX — THE HARD PART + STATUS ===== -->
+        <section>
+          <span class="kicker">Project 2 of 5 · Windows App Automation</span>
+          <h2 style="font-size: 1.35em">The hard part wasn’t the apps —<br />it was the people using them</h2>
+          <ul style="font-size: 0.6em; margin-top: 0.2em">
+            <li>Someone’s working? <b>Ask first</b> — postponable, with a limit that can’t be put off forever.</li>
+            <li>Nobody signed in? <b>Stage it</b> — finishes cleanly at their next sign-in.</li>
+          </ul>
+          <p class="fragment fade-up" style="font-size: 0.6em; margin: 0.5em 0 0.2em">
+            <span class="muted">My first version had the order wrong:</span> it removed the person’s running copy
+            <b>before the warning ever reached them</b>. Interrupted first, asked second.
+          </p>
+          <p class="fragment kr-wipe" style="font-size: 0.95em; font-weight: 900; text-align: center; margin: 0.45em 0">
+            The fix was <span class="accent">deleting a step</span> — not adding one.
+          </p>
+          <div class="kr-flow fragment kr-group-stagger">
+            <span class="kr-step">stage</span><span class="kr-arrow">→</span>
+            <span class="kr-step">ask</span><span class="kr-arrow">→</span>
+            <span class="kr-step">clean up</span><span class="kr-arrow">→</span>
+            <span class="kr-step">switch over</span>
+          </div>
+          <div class="fragment fade-up kr-status">
+            <span class="kr-status-dot"></span><b>In use</b>&nbsp;· the whole team · installing and updating Windows apps today
+          </div>
+          <aside class="notes">
+            <strong>75 sec.</strong> Setup (~20s): “Installing software on a computer someone is actively
+            working on is a completely different problem from installing it on an empty one.” Ask → postpone
+            → limit; not logged in → staged for next sign-in.<br />
+            💬 The limit: 48-hour grace window tracked on the machine itself — survives reboots.<br /><br />
+            ⭐ Story beat (~40s): v1 removed the logged-in person’s copy inside the main loop — before the
+            warning reached them. “When I went to fix the warning timing, I found the real answer: that
+            removal step didn’t need to happen at all. You can install the new version right over the old
+            registration — the app they have open keeps running off the files it already has, while the
+            record the scanner reads updates immediately. Both things are true at once.”<br />
+            <strong>“The fix wasn’t a better warning. It was deleting a step.”</strong> Four phases:
+            stage → ask → clean up → switch over. Nothing the user can see happens until they’ve been asked.<br /><br />
+            Optional beat (~15s — CUT FIRST): tool checked its own settings instead of the logged-in
+            person’s (runs as the computer, not a person) — audits quietly passing. ⚠ CONFIRM “reused in two
+            more tools” before saying “two”; else say “and reused the same fix elsewhere.”<br /><br />
+            💬 Q&amp;A: all-user removal tears out the provisioning anchor; machine-account = no “current
+            user,” null guards; orphaned provisioning records; 3D Viewer removal (deprecated Feb 2026) —
+            same tool, opposite direction.
+          </aside>
+        </section>
+
+        <!-- ===== SLIDE 9 (65s): DEVICE ONBOARDING SITE — the visual slide ===== -->
+        <section>
+          <span class="kicker">Project 3 of 5 · Device Onboarding Site</span>
+          <h2 style="font-size: 1.35em">New hires walk themselves through setup</h2>
+          <div class="cols middle" style="margin-top: 0.2em">
+            <div class="col-2">
+              <div class="kr-browser">
+                <div class="kr-browser-bar">
+                  <i></i><i></i><i></i>
+                  <span class="kr-browser-url">kirbyrisk.com · device onboarding — unindexed, internal</span>
+                  <span class="kr-live"><span class="kr-status-dot"></span>LIVE</span>
+                </div>
+                <div class="kr-browser-body" style="height: 8.2em">
+                  <!-- TODO: drop the real screenshot at public/images/onboarding-after.png then use:
+                       <img src="/images/onboarding-after.png" alt="Device onboarding site" />
+                       Optional before/after (outline: side by side, if the old version survives):
+                       shrink this frame to class="col" and add a second, smaller .kr-browser with
+                       /images/onboarding-before.png labeled “v1”. -->
+                  <div class="kr-shot-todo">
+                    screenshot goes here<br />
+                    <b>public/images/onboarding-after.png</b>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col" style="font-size: 0.58em">
+              <ul style="margin: 0">
+                <li><b>Designed and wrote all of it</b> — layout, styling, behavior. HTML · CSS · JavaScript.</li>
+                <li>Every step is <b>one action</b> — progress tracked, so you can stop and pick back up.</li>
+              </ul>
+              <p class="fragment fade-up" style="margin: 0.7em 0 0">
+                <span class="muted">“The quality wasn’t there.”</span><br />
+                <b>So I rebuilt it from scratch</b> — designed for someone’s first day, not for me.
+              </p>
+            </div>
+          </div>
+          <div class="fragment fade-up kr-status">
+            <span class="kr-status-dot"></span><b>Live</b>&nbsp;· on the Kirby Risk site today · onboarded every intern this cycle
+          </div>
+          <aside class="notes">
+            <strong>65 sec.</strong> “New hires used to get set up by following someone else’s instructions —
+            a document, or a person walking them through it. I built a site that walks them through it
+            themselves. I designed it and wrote all of it — the layout, the styling, the behavior. Every step
+            is a single action, and it tracks your progress, so you can stop, come back, and know exactly
+            where you left off.”<br /><br />
+            ⚠ CONFIRM the no-frameworks framing before using: “No frameworks, deliberately — nothing to
+            install, nothing to update, nothing that breaks when I’m gone.” (Only if vanilla was a deliberate
+            choice — otherwise skip the line entirely.)<br /><br />
+            <strong>The rebuild (~30s), say it straight:</strong> “Partway through, the head developer told me
+            the quality wasn’t there. I rebuilt it from scratch, properly. The second version was better
+            because I’d stopped designing it for me and started designing it for someone on their first day
+            who doesn’t know what any of it is called yet.” Say what the rebuild TAUGHT you, not how the
+            feedback felt.<br /><br />
+            Status line: it’s LIVE — running on the Kirby Risk website (unindexed) right now.<br />
+            💬 If asked what you’d do differently: put it in the pipeline, so its build and deploy are as
+            hands-off as everything else (connects this slide to the next arc).
+          </aside>
+        </section>
+
+        <!-- ===== DIVIDER (5s): TRANSITION INTO THE PLATFORM ARC ===== -->
+        <section
+          class="divider"
+          data-background-gradient="linear-gradient(150deg, #2a2a2a 0%, #1a1a1a 70%)"
+        >
+          <span class="kicker">The Last Arc</span>
+          <h1 class="kr-rise" style="font-size: 2.2em">The Developer Platform</h1>
+          <div class="kr-wire" style="width: 38%; margin: 0.5em auto"></div>
+          <p class="muted kr-rise" style="--kr-delay: 0.45s; font-size: 0.65em">
+            The other end entirely — what code goes through before it becomes software anyone uses.
+          </p>
+          <aside class="notes">
+            <strong>5 sec — say it out loud:</strong> “That’s the endpoint and internal tools side. The last
+            part is the other end entirely — the process the code itself goes through before it becomes
+            software anyone uses.”<br />
+            <em>Without this sentence the deck feels like two presentations stapled together.</em>
+          </aside>
+        </section>
+
+        <!-- ===== SLIDE 10 (75s — never cut): THE PIPELINE [auto-animate pair] ===== -->
+        <section data-auto-animate data-auto-animate-id="pipeline">
+          <span class="kicker">Project 4 of 5 · The KRSpark Pipeline</span>
+          <h2>KRSpark, when I got there</h2>
+          <ul style="font-size: 0.8em; line-height: 1.7; margin-top: 0.4em">
+            <li data-id="b1">A developer changes code</li>
+            <li data-id="b2">Someone eyeballs it</li>
+            <li data-id="b3">Someone copies files onto the server</li>
+          </ul>
+          <p class="muted" style="font-size: 0.66em; margin-top: 0.5em">No automated checking of any kind.</p>
+          <aside class="notes">
+            <strong>Lead with “built,” not “own”:</strong> “KRSpark is the internal web application our team
+            is building. When I got there it had no automated checking of any kind. I built the pipeline that
+            does it — from nothing, having never touched CI/CD before.” Then advance →
+          </aside>
+        </section>
+        <section data-auto-animate data-auto-animate-id="pipeline">
+          <span class="kicker">Project 4 of 5 · The KRSpark Pipeline</span>
+          <h2>KRSpark now</h2>
+          <div class="cols" style="margin-top: 0.2em">
+            <div class="col">
+              <h4 class="muted" style="font-size: 0.55em; letter-spacing: 0.12em; text-transform: uppercase">Before</h4>
+              <ul class="muted" style="font-size: 0.5em; margin: 0">
+                <li data-id="b1">A developer changes code</li>
+                <li data-id="b2">Someone eyeballs it</li>
+                <li data-id="b3">Someone copies files onto the server</li>
+              </ul>
+            </div>
+            <div class="col">
+              <h4 style="font-size: 0.55em; letter-spacing: 0.12em; text-transform: uppercase; color: var(--kr-red)">Now</h4>
+              <ul style="font-size: 0.5em; margin: 0">
+                <li>Every change checked automatically</li>
+                <li><b>Can’t merge until it passes</b></li>
+                <li>It deploys itself</li>
+              </ul>
+            </div>
+          </div>
+          <!-- TODO: confirm the count against ci.yaml — if a test job is in there now,
+               add a "tests" chip and say EIGHT out loud -->
+          <p class="fragment" data-fragment-index="1" style="font-size: 0.6em; margin: 0.4em 0 0.1em; text-align: center">
+            <b class="accent">Seven checks</b> before anything merges — count them:
+          </p>
+          <div class="kr-flow fragment kr-group-stagger" data-fragment-index="1" style="margin: 0.2em 0">
+            <span class="kr-step">compiles</span>
+            <span class="kr-step">builds</span>
+            <span class="kr-step">dependency audit</span>
+            <span class="kr-step">standards</span>
+            <span class="kr-step">formatting</span>
+            <span class="kr-step">security review</span>
+            <span class="kr-step">merge gate</span>
+          </div>
+          <p class="fragment fade-up" data-fragment-index="2" style="font-size: 0.6em; text-align: center; margin: 0.35em 0 0.1em">
+            And it caught a real one — our own code loading files from an <b>unverified value</b>.
+            Caught <b class="accent">before it merged</b>, not after it shipped.
+          </p>
+          <p class="fragment fade-up" data-fragment-index="3" style="font-size: 0.6em; text-align: center; margin: 0.1em 0">
+            Plus the project’s <b>first automated tests</b> — starting with access control.
+          </p>
+          <div class="fragment fade-up kr-status" data-fragment-index="4" style="margin-top: 0.5em">
+            <span class="kr-status-dot"></span><b>In production</b>&nbsp;· every change to KRSpark · nothing merges until it passes
+          </div>
+          <aside class="notes">
+            <strong>75 sec — NEVER cut.</strong> Walk the checks and COUNT THEM OUT LOUD: “does the code
+            compile, does it build, are any third-party dependencies known to be vulnerable, is it written to
+            our standards, is it formatted consistently, does it pass a security-specific review, and one
+            gate that has to see all of those pass.”<br />
+            ⚠ CONFIRM seven vs eight against ci.yaml (type-check, build, dependency audit, lint, format,
+            security lint, pass-gate — if a test job is in, say EIGHT).<br /><br />
+            ⭐ The story beat: “The security check flagged a piece of our own code that loaded files based on
+            a value it hadn’t verified — the kind of thing that lets someone load something you didn’t
+            intend. Caught before it merged, not after it shipped.”<br />
+            ⚠ CONFIRM how you resolved pluginLoader.ts (restructured with import.meta.glob, or documented
+            justification — say the TRUE one).<br /><br />
+            Tests beat: “The pipeline could tell you the code compiled. It couldn’t tell you the code was
+            right. So I added the first automated tests the project ever had — starting with the
+            access-control logic.”<br />
+            💬 Q&amp;A: self-hosted Windows runner, Gitea Actions, PowerShell, Corepack/pnpm,
+            frozen-lockfile, Node from engines.
+          </aside>
+        </section>
+
+        <!-- ===== SLIDE 11 (60s): DEPLOY, RELEASE, ENFORCE ===== -->
+        <section>
+          <span class="kicker">Project 4 of 5 · The KRSpark Pipeline</span>
+          <h2>Deploy, release, enforce</h2>
+          <div class="cols" style="margin-top: 0.5em">
+            <div class="col kr-card fragment scale-in">
+              <h3>Deploys itself</h3>
+              <p style="margin: 0.2em 0">Build → verify → copy to the live server → <b>fail loudly</b> if it doesn’t land.</p>
+              <p class="muted" style="margin: 0.2em 0">Front end + the .NET back-end service. Nobody copies files by hand anymore.</p>
+            </div>
+            <div class="col kr-card fragment scale-in">
+              <h3>Every version labeled</h3>
+              <p style="margin: 0.2em 0">A number + an <b>automatic record of what changed</b>.</p>
+              <p class="muted" style="margin: 0.2em 0">Test versions recognized as test versions — nobody flags them by hand.</p>
+            </div>
+            <div class="col kr-card fragment scale-in">
+              <h3>Checks are load-bearing</h3>
+              <p style="margin: 0.2em 0">A check that reports is a suggestion. <b>These block the merge.</b></p>
+              <p class="muted" style="margin: 0.2em 0">And who can change what is structured — the pipeline can’t be quietly edited around.</p>
+            </div>
+          </div>
+          <div class="fragment fade-up kr-status">
+            <span class="kr-status-dot"></span><b>Enforced</b>&nbsp;· every deploy to the live server — untouched by hand
+          </div>
+          <aside class="notes">
+            <strong>60 sec (trim to 45 by cutting beat ③).</strong><br />
+            ① ⭐ (~22s) “Getting code onto the production server used to be a person copying files onto it.
+            Now the pipeline does it: builds, verifies the build actually produced something, copies it to
+            the live server, and fails loudly if it doesn’t land. I built that for the front end, and a
+            second one for the .NET back-end service.” — most legible sentence in this arc.<br /><br />
+            ② (~18s) Version number + automatic changelog; pre-release auto-detection is real and shipped.
+            ⚠ Only add “and we can put a previous version back on demand” if the ref input is actually wired
+            into the deploy checkout — otherwise leave rollback OUT, don’t hedge it.<br /><br />
+            ③ (~20s) “A check that just reports a problem is a suggestion. I set it up so the checks actually
+            block.” ⚠ CONFIRM branch protection is configured — if not, say it as design intent: “the next
+            step is making them blocking rather than advisory — a settings change, not a code change.”
+            Being straight is stronger than being caught.
+          </aside>
+        </section>
+
+        <!-- ===== SLIDE 12 (45s — FIRST CUT if over): MAKING IT SCALE ===== -->
+        <section class="center-text">
+          <span class="kicker">Project 4 of 5 · The Multiplier</span>
+          <h2 class="no-rule" style="font-size: 1.8em">Built once. <span class="accent">Inherited by everything after.</span></h2>
+          <ul class="kr-stagger" style="--kr-delay: 0.4s; font-size: 0.68em; margin-top: 0.5em">
+            <li>Every check lives in <b>one central repository</b> — projects inherit them instead of copying them.</li>
+            <li>Improve it once → <b>everything improves</b>. No five slowly-rotting copies.</li>
+            <li>A starter template: new projects begin <b>fully wired on day one</b> — pipeline, standards, tooling, tests.</li>
+            <li class="muted">A second template for the .NET stack is in progress; a third stack after that.</li>
+          </ul>
+          <aside class="notes">
+            <strong>45 sec — this slide is the FIRST thing to cut if you’re running long.</strong><br />
+            “The last piece was making sure none of this was a one-project thing.”<br /><br />
+            ⚠ CONFIRM before saying “projects reference them”: is KRSpark’s CI actually calling the shared
+            workflows yet, or is the central repo built but not yet consumed? If built-but-not-consumed:
+            “the checks now live in one central place so projects can inherit them instead of copying them” —
+            same substance, no overclaim.<br /><br />
+            Real: central Pipelines repo with reusable workflows; VUE-APP-TEMPLATE complete;
+            NET-APP-TEMPLATE in progress.<br />
+            <em>Do NOT mention:</em> RA Serialization pipelines (written, not merged), Gitleaks (pending the
+            binary install — do not claim it’s running), path constraints, TS version pin.
+          </aside>
+        </section>
+
+        <!-- ===== SLIDE 13 (85s — never cut): GOVERNING AI DEVELOPMENT ===== -->
+        <section>
+          <span class="kicker">Project 5 of 5 · Governing AI Development</span>
+          <h2 style="font-size: 1.35em">AI writes code here now. I built the guardrails.</h2>
+          <!-- TODO (optional but strengthens the slide): real counts as chips once
+               confirmed — e.g. “6 procedures · 2 reviewers” next to the bands -->
+          <div class="kr-bands">
+            <div class="kr-band b1 fragment">
+              <span class="kr-band-name">Rules</span>
+              <span>What it should do — read before it touches anything. Portable to any AI vendor.</span>
+            </div>
+            <div class="kr-band b2 fragment">
+              <span class="kr-band-name">Procedures</span>
+              <span>The repeatable work, done the same way every time — checks, tests, docs, accessibility.</span>
+            </div>
+            <div class="kr-band b3 fragment">
+              <span class="kr-band-name">Reviewers</span>
+              <span>Read-only — one for the design, one for the code. They can look. They can’t touch.</span>
+            </div>
+            <div class="kr-band b4 fragment">
+              <span class="kr-band-name">Enforcement</span>
+              <span>Hard blocks on the handful of actions that must never happen. Not a warning — <b>it doesn’t execute.</b></span>
+            </div>
+          </div>
+          <p class="fragment fade-up" style="font-size: 0.72em; text-align: center; margin-top: 0.5em">
+            Rules for the 99%. <b class="accent">Hard blocks for the things that must never happen.</b>
+          </p>
+          <aside class="notes">
+            <strong>85 sec — NEVER cut; most current work.</strong> Open with the problem, not the
+            technology: “People on our team write code with AI now — and some of them aren’t developers.
+            That’s happening whether or not anyone’s governing it. So the question isn’t whether to allow it.
+            It’s whether it happens inside guardrails or without them.”<br /><br />
+            Walk the four layers top to bottom (~45s): rulebook (portable, any vendor) → written procedures
+            (same way every time: run the checks and explain failures in plain language, write tests, keep
+            docs current, check accessibility) → reviewers (read-only; architecture and code SEPARATELY —
+            “is this line correct” and “is this design sound” are different altitudes) → enforcement (“hard
+            blocks on the handful of actions that must never happen. Not a warning. It doesn’t execute —
+            regardless of what the AI decided, and regardless of whether whoever’s driving it read the
+            rules.”)<br /><br />
+            ⭐ The manager framing: “None of this replaces the people doing reviews. Accessibility is the
+            clearest example — it was already being reviewed, and it still is. What changed is that it’s now
+            ALSO checked on every single change, automatically, before a person ever opens it. The human
+            review starts from a cleaner place and spends its attention on what a checker can’t see.”
+            ⚠ Do NOT say nobody was checking accessibility before.<br /><br />
+            ⭐ The callback: “Which is the same lesson as the pipeline, one layer up. Written guidance is a
+            suggestion. Enforcement is a rule. I ended up building both, twice, for two completely different
+            problems.”<br /><br />
+            <em>Language for this room: “rulebook, procedures, reviewers, enforcement layer.” NEVER say
+            AGENTS.md, skill, hook, subagent, or agent.</em><br />
+            ⚠ CONFIRM adoption before implying it: in use → “it’s in the template every new project starts
+            from”; not rolled out → “built and going into the templates.”<br />
+            💬 Q&amp;A mechanisms + “isn’t this just trusting AI?” answers: Presentation-Outline.md.
+          </aside>
+        </section>
+
+        <!-- ===== SLIDE 14 (40s — trim to 30): WHAT I LEARNED ===== -->
+        <section>
+          <span class="kicker">What I Learned</span>
+          <h2>Three lessons</h2>
+          <ol style="font-size: 0.72em; line-height: 1.45; margin-top: 0.4em">
+            <li class="fragment fade-in-then-semi-out" style="margin-bottom: 0.6em">
+              <b>Scale changes engineering.</b><br />
+              <span class="muted" style="font-size: 0.85em">Error handling and safety mean something completely different at 1,600 machines than at one. The Dell story is that lesson in one example.</span>
+            </li>
+            <li class="fragment fade-in-then-semi-out" style="margin-bottom: 0.6em">
+              <b>Automation is only worth what it enforces.</b><br />
+              <span class="muted" style="font-size: 0.85em">A check that reports a problem is a suggestion. A check that blocks the merge is a rule.</span>
+            </li>
+            <li class="fragment fade-in-then-semi-out">
+              <b>The best fix is often removing a step, not adding one.</b><br />
+              <span class="muted" style="font-size: 0.85em">The changes I’m proudest of: realizing a step didn’t need to happen — and refusing to do something halfway.</span>
+            </li>
+          </ol>
+          <aside class="notes">
+            <strong>40 sec (trim to 30) — cut SECOND if over.</strong> Reference the stories, do NOT
+            re-explain them.<br />
+            1. Dell = that lesson in one example.<br />
+            2. Two concrete referents behind it now: the merge gate (slide 11) and the AI hard blocks
+            (slide 13) — “a written rulebook and a hard block are not the same tool.”<br />
+            3. Covers the AppX reorder and the Dell all-or-nothing fix in one sentence: “My instinct on every
+            one of these was to add more logic. The two changes I’m proudest of were realizing a step didn’t
+            need to happen at all, and refusing to do something halfway.”
+          </aside>
+        </section>
+
+        <!-- ===== SLIDE 15 (35s): CLOSE ===== -->
+        <section
+          class="impact"
+          data-background-gradient="linear-gradient(135deg, #bf311a 0%, #8e2413 60%, #6d1b0e 100%)"
+          data-kr-sparks="80"
+        >
+          <h1 class="kr-cascade kr-glow white" data-kr-split="words" style="font-size: 1.9em; margin-bottom: 0.25em">
+            Everything I built runs without me.
+          </h1>
+          <!-- TODO: same X as slide 4 -->
+          <p style="font-size: 0.55em; opacity: 0.92; margin: 0.2em 0 0.5em">
+            <b>X</b> scripts &amp; tools · <b>5</b> projects · all of them running right now
+          </p>
+          <div class="kr-status-stack kr-stagger" style="--kr-delay: 0.9s; font-size: 0.9em">
+            <div class="kr-status"><span class="kr-status-dot"></span><b>.NET framework</b>&nbsp;— in production · daily · 1,600+ machines</div>
+            <div class="kr-status"><span class="kr-status-dot"></span><b>App automation</b>&nbsp;— in use across the team</div>
+            <div class="kr-status"><span class="kr-status-dot"></span><b>Onboarding site</b>&nbsp;— live on the Kirby Risk site</div>
+            <div class="kr-status"><span class="kr-status-dot"></span><b>KRSpark pipeline</b>&nbsp;— every change · every deploy</div>
+            <div class="kr-status"><span class="kr-status-dot"></span><b>AI guardrails</b>&nbsp;— built · heading into every template</div>
+          </div>
+          <p class="small" style="margin-top: 0.8em; letter-spacing: 0.26em; text-transform: uppercase; opacity: 0.85">
+            Thank you · Kirby Risk · 100 Years · <b>Make It Happen!</b>
+          </p>
+          <aside class="notes">
+            <strong>35 sec (trim to 25).</strong> “X scripts and tools, and five things I’d call projects:
+            the .NET framework, the Windows app automation, the onboarding site, the pipeline, and the AI
+            guardrails. All of them are running right now. <strong>None of them need me to run.</strong>”<br /><br />
+            “The through-line: I came in thinking automation was about saving time. It’s actually about doing
+            the same thing correctly every time, on every machine, whether or not anyone’s watching.”<br /><br />
+            Then thank them and STOP. Do not trail off into “so yeah, that’s about it.”<br />
+            ⚠ Guardrails status uses the safe phrasing (“heading into every template”) — upgrade it to
+            “in the template every new project starts from” only if adoption is confirmed.
+          </aside>
         </section>
       </div>
     </div>
@@ -31,12 +726,23 @@
     <script type="module">
       import Reveal from './node_modules/reveal.js/dist/reveal.mjs';
       import Notes from './node_modules/reveal.js/dist/plugin/notes.mjs';
+      import { initKrEffects } from './effects/kr-effects.js';
 
       const deck = new Reveal({
+        width: 1280,
+        height: 720,
+        margin: 0.06,
         hash: true,
+        slideNumber: 'c/t',
+        transition: 'slide',
+        backgroundTransition: 'fade',
+        autoAnimateEasing: 'ease-out',
+        autoAnimateDuration: 0.7,
         plugins: [Notes],
       });
       deck.initialize();
+      initKrEffects(deck);
+      window.deck = deck; // devtools + deck-reviewer
     </script>
   </body>
 </html>
