@@ -213,6 +213,7 @@
 .reveal .muted { color: var(--kr-gray); }
 .reveal .accent { color: var(--kr-red); }
 .reveal .small { font-size: 0.62em; }
+.reveal .extra-small { font-size: 0.42em; }
 
 .reveal a {
   color: var(--r-link-color);

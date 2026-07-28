@@ -123,6 +123,7 @@
   from { background-position: 0 0; }
   to   { background-position: 56px 0; }
 }
+
 .kr-wire {
   height: 4px;
   width: 100%;
