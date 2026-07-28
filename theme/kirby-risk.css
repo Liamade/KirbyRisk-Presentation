@@ -112,6 +112,33 @@
   pointer-events: none;
 }
 
+/* Backsplash: giant KR monogram (official mark, /images/kr-monogram.svg used
+ * as an alpha mask so the color stays on CSS variables) painted on reveal's
+ * backgrounds layer — above per-slide gradients, below slide content.
+ * Dark slides opt into the white variant with data-state="kr-dark". */
+.reveal .backgrounds::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: -5%;
+  width: 56%;
+  aspect-ratio: 44.32 / 35.11;
+  transform: translateY(-50%);
+  -webkit-mask: url('/images/kr-monogram.svg') no-repeat center / contain;
+  mask: url('/images/kr-monogram.svg') no-repeat center / contain;
+  background-color: var(--kr-red);
+  opacity: 0.055;
+  pointer-events: none;
+  /* Above the active .slide-background (reveal sets it to z-index: 2) but
+     still inside .backgrounds' own stacking context (its perspective creates
+     one), so slide content always paints on top. */
+  z-index: 3;
+}
+.kr-dark .backgrounds::after {
+  background-color: var(--kr-white);
+  opacity: 0.1;
+}
+
 /* ---------------------------------------------------------------------------
  * Typography
  * ------------------------------------------------------------------------ */
@@ -509,6 +536,7 @@
  * ------------------------------------------------------------------------ */
 @media print {
   .reveal-viewport::after { display: none; }
+  .reveal .backgrounds::after { display: none; }
 }
 
 /* ===========================================================================

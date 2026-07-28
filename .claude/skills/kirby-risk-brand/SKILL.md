@@ -60,9 +60,19 @@ Full markup for each is in the `revealjs-authoring` skill.
 
 ## Logo
 
-No official logo art is in the repo yet. Until the user drops files into `public/images/`:
-- Use the text wordmark: `<span class="wordmark"><span class="kirby">Kirby</span> <span class="risk">Risk</span></span>` (red + cool gray, matching the real logo's colors).
-- When official art lands, prefer it on title/closing slides; keep clear space around it and never recolor or stretch it. There is also a 100th-anniversary logo variant on kirbyrisk.com worth asking the user to obtain — it fits the centennial angle.
+Official art (sourced from kirbyrisk.com via the Wayback Machine, March 2026 capture —
+the live site Cloudflare-blocks scrapers) now lives in `public/images/`:
+- `kr-logo-white.svg` — full white wordmark (KR mark + "KirbyRisk"), 162×40 viewBox. Use on
+  red/charcoal backgrounds; already on the title and closing slides.
+- `kr-monogram.svg` — the KR arrow mark alone, warm red, 44.32×35.11 viewBox. Doubles as the
+  favicon and as the alpha mask for the theme's backsplash watermark
+  (`.reveal .backgrounds::after`; dark slides opt into the white variant with
+  `data-state="kr-dark"` on the section).
+- Prefer the real art over the text-wordmark stand-in (`<span class="wordmark">…`) on
+  title/closing slides; keep clear space around it and never recolor (white and warm red are
+  the two official colorways) or stretch it. No color (red+gray) raster of the full logo is
+  archived; rebuild from the white SVG if ever needed. There is also a 100th-anniversary logo
+  variant on kirbyrisk.com worth asking the user to obtain — it fits the centennial angle.
 
 ## Voice — promotional but earned
 
