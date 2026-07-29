@@ -112,7 +112,7 @@
   pointer-events: none;
 }
 
-/* Backsplash: giant KR monogram (official mark, /images/kr-monogram.svg used
+/* Backsplash: giant KR monogram (official mark, ../images/kr-monogram.svg used
  * as an alpha mask so the color stays on CSS variables) painted on reveal's
  * backgrounds layer — above per-slide gradients, below slide content.
  * Dark slides opt into the white variant with data-state="kr-dark". */
@@ -124,8 +124,8 @@
   width: 56%;
   aspect-ratio: 44.32 / 35.11;
   transform: translateY(-50%);
-  -webkit-mask: url('/images/kr-monogram.svg') no-repeat center / contain;
-  mask: url('/images/kr-monogram.svg') no-repeat center / contain;
+  -webkit-mask: url('../images/kr-monogram.svg') no-repeat center / contain;
+  mask: url('../images/kr-monogram.svg') no-repeat center / contain;
   background-color: var(--kr-red);
   opacity: 0.055;
   pointer-events: none;
@@ -198,7 +198,7 @@
   margin-bottom: 0.6em;
 }
 
-/* Text-only stand-in for the logo until official art lands in public/images/ */
+/* Text-only stand-in for the logo until official art lands in images/ */
 .reveal .wordmark {
   font-weight: 900;
   letter-spacing: -0.02em;
@@ -482,6 +482,27 @@
   border-color: var(--kr-red);
   color: var(--kr-white);
 }
+/* Quiet variant — for dense inventory grids where a wall of bordered white
+ * pills reads as clutter. Flat fill, no border, lighter weight, so a single
+ * .hot chip (or a tag-hot fragment) is the only thing that pops. */
+.reveal .tag.quiet {
+  background: var(--kr-light);
+  border-color: transparent;
+  color: var(--kr-gray);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  /* Sized for density, not for a sparse tag row. The stock .tag's 999px
+   * radius makes each end a semicircle half the chip's height wide — dead
+   * space the text can't use, costing the same absolute width on a short
+   * label as on a long one. That's why "VS Code" read as ~1/3 padding while
+   * "Windows 11 build compliance" read as ~1/8, however the padding was
+   * tuned. A small radius drops the cap entirely, so the text-to-chip ratio
+   * stays even across labels of very different lengths. */
+  font-size: 0.54em;
+  padding: 0.2em 0.46em;
+  border-radius: 4px;
+  line-height: 1.35;
+}
 
 /* ---------------------------------------------------------------------------
  * Custom fragments (see the reveal-animations skill)
@@ -490,6 +511,16 @@
 .reveal .fragment.custom.highlight-kr { opacity: 1; visibility: inherit; }
 .reveal .fragment.custom.highlight-kr.visible {
   color: var(--kr-red);
+  font-weight: 700;
+}
+/* Chip that starts quiet and goes brand-red on keypress — the chip equivalent
+ * of highlight-kr. Pair with class="tag quiet fragment custom tag-hot": the
+ * chip is visible from the start, the keypress only changes its color. */
+.reveal .fragment.custom.tag-hot { opacity: 1; visibility: inherit; }
+.reveal .fragment.custom.tag-hot.visible {
+  background: var(--kr-red);
+  border-color: var(--kr-red);
+  color: var(--kr-white);
   font-weight: 700;
 }
 

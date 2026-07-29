@@ -13,7 +13,7 @@ description: How to add, edit, and lay out slides in this reveal.js deck — mar
 | Deck config & plugins | the `<script type="module">` block at the bottom of `index.html` |
 | Brand theme | ships inside the `kirby-risk-brand` skill; apply per that skill (copy to `theme/kirby-risk.css`) before styling slides |
 | Signature animations | ship inside the `kr-effects` skill; install per that skill (copies to `effects/kr-effects.css` + `.js`) |
-| Images, logos, screenshots | `public/images/` — Vite serves `public/` at the root, so reference as `/images/file.png` |
+| Images, logos, screenshots | `images/` at the repo root — reference RELATIVELY as `images/file.png` (no leading slash) so the deck also works under a plain static server like VS Code Live Server |
 | Narrative outline | `docs/outline.md` (written by the story-coach agent) |
 
 Slides stay in `index.html` (not split files): auto-animate and fragments need real HTML, and one file keeps ordering obvious. Dev server: `pnpm start` → http://localhost:5173 (also `.claude/launch.json`, name `deck`).
@@ -114,7 +114,7 @@ The canvas never scrolls — reveal scales it. If content overflows, cut or spli
 </code></pre>
 ```
 
-**Images**: `<img src="/images/shot.png" class="kr-shadow" />` (shadow + rounded corners). Reveal built-ins: `r-stretch` on an img auto-fills remaining slide height; `r-fit-text` on a heading fills the width.
+**Images**: `<img src="images/shot.png" class="kr-shadow" />` (shadow + rounded corners). Reveal built-ins: `r-stretch` on an img auto-fills remaining slide height; `r-fit-text` on a heading fills the width.
 
 ## Backgrounds
 
@@ -124,9 +124,9 @@ The canvas never scrolls — reveal scales it. If content overflows, cut or spli
   <section class="divider" data-background-gradient="linear-gradient(150deg, #2a2a2a 0%, #1a1a1a 70%)">
   ```
   `impact` (red, white text) = title/closing only; `divider` (charcoal) = section breaks.
-- Full-bleed image: `<section data-background-image="/images/branch.jpg" data-background-opacity="0.3">` — keep opacity low or text drowns.
+- Full-bleed image: `<section data-background-image="images/branch.jpg" data-background-opacity="0.3">` — keep opacity low or text drowns.
 - Solid/gradient: `data-background-color="#F2F2F2"`, `data-background-gradient="linear-gradient(...)"`.
-- Video: `data-background-video="/images/clip.mp4" data-background-video-muted data-background-video-loop`.
+- Video: `data-background-video="images/clip.mp4" data-background-video-muted data-background-video-loop`.
 
 ## Design rules
 

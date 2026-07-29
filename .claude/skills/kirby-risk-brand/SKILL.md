@@ -61,7 +61,7 @@ Full markup for each is in the `revealjs-authoring` skill.
 ## Logo
 
 Official art (sourced from kirbyrisk.com via the Wayback Machine, March 2026 capture —
-the live site Cloudflare-blocks scrapers) now lives in `public/images/`:
+the live site Cloudflare-blocks scrapers) now lives in `images/` at the repo root (referenced relatively, e.g. `images/kr-logo-white.svg`):
 - `kr-logo-white.svg` — full white wordmark (KR mark + "KirbyRisk"), 162×40 viewBox. Use on
   red/charcoal backgrounds; already on the title and closing slides.
 - `kr-monogram.svg` — the KR arrow mark alone, warm red, 44.32×35.11 viewBox. Doubles as the

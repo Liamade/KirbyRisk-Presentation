@@ -16,7 +16,10 @@
     <link rel="stylesheet" href="node_modules/@fontsource/roboto/900.css" />
     <link rel="stylesheet" href="theme/kirby-risk.css" id="theme" />
     <link rel="stylesheet" href="effects/kr-effects.css" />
-    <link rel="icon" href="/images/kr-monogram.svg" type="image/svg+xml" />
+    <!-- Asset paths are RELATIVE (no leading slash) on purpose: that way the
+         deck works under Vite, under a plain static server like VS Code Live
+         Server, and from file://. Images live at ./images, not in public/. -->
+    <link rel="icon" href="images/kr-monogram.svg" type="image/svg+xml" />
   </head>
   <body>
     <div class="reveal">
@@ -31,17 +34,18 @@
 
              TODO LEDGER — real facts only you can fill (never invented here):
                [ ] Slide 1  — name display, internship dates, total hours
-               [ ] Slide 4  — the script/tool count X (then switch on the counter
-                              markup, see comment there) + real script names in
-                              the four buckets (dashed chips are placeholders)
-               [ ] Slide 6  — .NET findings count before ("X" on slide 6a) —
-                              pull from Tenable
-               [ ] Slide 9  — screenshot(s) → public/images/onboarding-after.png
+               [x] Slide 4  — count (19) and real script names, built from the
+                              tools repo; see that slide's notes for the two
+                              files deliberately excluded from the count
+               [ ] Slide 5  — optional: swap the word "Hundreds" for the real
+                              starting findings count from Tenable (a specific
+                              number lands harder than the word)
+               [ ] Slide 9  — screenshot(s) → images/onboarding-after.png
                               (+ optional onboarding-before.png)
                [ ] Slide 10 — confirm SEVEN checks vs eight (test job in ci.yaml?
                               → add a "tests" chip and say eight)
                [ ] Slide 13 — optional counts (procedures, reviewers) as chips
-               [ ] Slide 15 — same X as slide 4
+               [x] Slide 15 — count kept in sync with slide 4 (19)
              ⚠ CONFIRM-before-saying items live in each slide's speaker notes.
              ================================================================ -->
 
@@ -52,7 +56,7 @@
           data-background-gradient="linear-gradient(135deg, #bf311a 0%, #8e2413 60%, #6d1b0e 100%)"
           data-kr-sparks="70"
         >
-          <img src="/images/kr-logo-white.svg" alt="Kirby Risk" style="height: 58px; margin: 0 0 0.5em" />
+          <img src="images/kr-logo-white.svg" alt="Kirby Risk" style="height: 58px; margin: 0 0 0.5em" />
           <p class="extra-small" style="letter-spacing: 0.28em; text-transform: uppercase; opacity: 0.85; margin-bottom: 1.4em">
             Est. 1926
           </p>
@@ -122,246 +126,317 @@
           <span class="kicker">The Body of Work</span>
           <h2>What the internship produced</h2>
           <div class="cols middle" style="margin-top: 0.3em">
-            <div class="col center-text" style="flex: 0 0 300px">
-              <!-- TODO: real count. When you have it, replace the X with:
-                   <span class="stat-number" style="font-size:3.4em" data-kr-count="NN">NN</span> -->
-              <span class="stat-number" style="font-size: 3.4em">X</span>
+            <div class="col center-text" style="flex: 0 0 260px">
+              <!-- 19 = every substantive script in the tools repo. Excluded on purpose:
+                   an empty test.ps1 and Windows-update-testing.ps1 (a scratch copy of
+                   WindowsInPlaceRepair). If WindowsInPlaceRepair is superseded by
+                   Windows-ISO-Repair, drop its chip and make this 18. -->
+              <span class="stat-number" style="font-size: 3.4em" data-kr-count="19" data-kr-count-duration="1.6">19</span>
               <span class="stat-label">scripts &amp; tools</span>
             </div>
             <div class="col-2">
-              <div class="kr-stagger" style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px 22px">
-                <!-- TODO: replace dashed placeholder chips with REAL script names
-                     (rename cryptic internal jargon for the room, or leave it out).
-                     Add/remove chips freely — grouping by bucket is the point. -->
+              <div class="kr-stagger" style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px 24px">
+                <!-- Chips are the real tools, named for the room rather than by filename.
+                     "Update engines" (inventory → policy → remediate) is deliberately kept
+                     apart from "App version updates" (download the fixed version, install
+                     it) — lumping them together made the two big ones look trivial.
+                     The two `fragment custom tag-hot` chips are visible from the start and
+                     turn brand-red on the first keypress: they became Projects 1 and 2. -->
                 <div>
-                  <h4 style="font-size: 0.5em; letter-spacing: 0.12em; text-transform: uppercase; color: var(--kr-red); margin-bottom: 0.35em">Fleet remediation</h4>
-                  <div class="tags" style="justify-content: flex-start; gap: 8px; margin: 0">
-                    <span class="tag todo">script name</span><span class="tag todo">script name</span><span class="tag todo">script name</span>
+                  <h4 style="font-size: 0.44em; letter-spacing: 0.12em; text-transform: uppercase; color: var(--kr-red); margin-bottom: 0.35em">Update engines</h4>
+                  <div class="tags" style="justify-content: flex-start; gap: 7px; margin: 0">
+                    <!-- Same data-fragment-index on both: one arrow press turns them
+                         red together, rather than one chip per press. -->
+                    <span class="tag quiet fragment custom tag-hot" data-fragment-index="0">.NET runtime remediation</span><span class="tag quiet fragment custom tag-hot" data-fragment-index="0">Store app provisioning</span><span class="tag quiet">Monthly cumulative updates</span><span class="tag quiet">Windows 11 build compliance</span>
                   </div>
                 </div>
                 <div>
-                  <h4 style="font-size: 0.5em; letter-spacing: 0.12em; text-transform: uppercase; color: var(--kr-red); margin-bottom: 0.35em">Machine lifecycle</h4>
-                  <div class="tags" style="justify-content: flex-start; gap: 8px; margin: 0">
-                    <span class="tag todo">script name</span><span class="tag todo">script name</span><span class="tag todo">script name</span>
+                  <h4 style="font-size: 0.44em; letter-spacing: 0.12em; text-transform: uppercase; color: var(--kr-red); margin-bottom: 0.35em">App version updates</h4>
+                  <div class="tags" style="justify-content: flex-start; gap: 7px; margin: 0">
+                    <span class="tag quiet">NVIDIA display drivers</span><span class="tag quiet">Adobe Reader</span><span class="tag quiet">VMware Workstation</span><span class="tag quiet">VS Code</span>
                   </div>
                 </div>
                 <div>
-                  <h4 style="font-size: 0.5em; letter-spacing: 0.12em; text-transform: uppercase; color: var(--kr-red); margin-bottom: 0.35em">Security troubleshooting</h4>
-                  <div class="tags" style="justify-content: flex-start; gap: 8px; margin: 0">
-                    <span class="tag todo">script name</span><span class="tag todo">script name</span><span class="tag todo">script name</span>
+                  <h4 style="font-size: 0.44em; letter-spacing: 0.12em; text-transform: uppercase; color: var(--kr-red); margin-bottom: 0.35em">Removal &amp; cleanup</h4>
+                  <div class="tags" style="justify-content: flex-start; gap: 7px; margin: 0">
+                    <span class="tag quiet">Dell SupportAssist</span><span class="tag quiet">Dell Trusted Device</span><span class="tag quiet">Paint 3D · 3D Viewer</span><span class="tag quiet">Consumer Office licenses</span>
                   </div>
                 </div>
                 <div>
-                  <h4 style="font-size: 0.5em; letter-spacing: 0.12em; text-transform: uppercase; color: var(--kr-red); margin-bottom: 0.35em">Process automation</h4>
-                  <div class="tags" style="justify-content: flex-start; gap: 8px; margin: 0">
-                    <span class="tag todo">script name</span><span class="tag todo">script name</span><span class="tag todo">script name</span>
+                  <h4 style="font-size: 0.44em; letter-spacing: 0.12em; text-transform: uppercase; color: var(--kr-red); margin-bottom: 0.35em">Hardening &amp; config</h4>
+                  <div class="tags" style="justify-content: flex-start; gap: 7px; margin: 0">
+                    <span class="tag quiet">Office macro policy</span><span class="tag quiet">Service ACL hardening</span><span class="tag quiet">Office update channel</span>
+                  </div>
+                </div>
+                <div style="grid-column: 1 / -1">
+                  <h4 style="font-size: 0.44em; letter-spacing: 0.12em; text-transform: uppercase; color: var(--kr-red); margin-bottom: 0.35em">Audit &amp; repair</h4>
+                  <div class="tags" style="justify-content: flex-start; gap: 7px; margin: 0">
+                    <span class="tag quiet">Log4j exposure audit</span><span class="tag quiet">Log4j JAR replacement</span><span class="tag quiet">CBS corruption repair</span><span class="tag quiet">Windows in-place repair</span>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <p class="fragment fade-up" style="text-align: center; font-size: 0.75em; margin-top: 0.55em">
-            Most are small and specific. <span class="accent" style="font-weight: 900">Two grew into projects of their own.</span>
-          </p>
           <aside class="notes">
             <strong>45 sec.</strong> Do NOT read the names out loud — the slide does that. Say:
-            “Over the internship I wrote <strong>X</strong> automation scripts and tools. They fall into a
-            few buckets: fixing security findings across the fleet, managing the lifecycle of a machine from
-            setup through decommission, troubleshooting Windows-level security problems, and automating
-            processes that were being done by hand.”<br /><br />
-            ⭐ The pivot — the whole point of the slide: “Most of these are small and specific.
-            <strong>Two of them grew big enough to be their own projects</strong>, and those are the two I
-            want to walk through.”<br /><br />
-            ⚠ CONFIRM: exact count (include the two big ones — “X scripts and tools, two of which grew into
-            full projects”).
+            “Over the internship I wrote <strong>nineteen</strong> automation scripts and tools. They fall
+            into four buckets: patching and updating software across the fleet, removing things that
+            shouldn’t be on a managed machine, hardening configuration, and assessing or repairing machines
+            that were already broken.”<br /><br />
+            ⭐ The pivot — the whole point of the slide. <strong>Press the arrow once</strong>: the two
+            chips in the top-left turn red, and nothing else on the slide changes. Then say it in your own
+            words — “most of these are small and specific; <strong>these two grew big enough to be their own
+            projects</strong>, and those are the two I want to walk through.” The slide deliberately has no
+            sentence for this; the color change is the cue and you do the talking.<br /><br />
+            ⚠ CONFIRM the count is still 19 before you present — it’s every substantive script in the tools
+            repo as of this build. Deliberately excluded: an empty <em>test.ps1</em> and
+            <em>Windows-update-testing.ps1</em> (a scratch copy of WindowsInPlaceRepair). If
+            WindowsInPlaceRepair turns out to be superseded by Windows-ISO-Repair, drop that chip and say
+            eighteen.<br />
+            ⚠ If any of these predate Kirby Risk or were written for something else, cut the chip — the
+            slide reads as “what the internship produced.”
           </aside>
         </section>
 
-        <!-- ===== SLIDE 5 (80s — never cut): .NET — THE BUILD ===== -->
+        <!-- ===== SLIDE 5 (30s): .NET — THE SCENARIO =====
+             Scenario BEFORE mechanism. Nothing here explains how the tool works;
+             this slide only has to make the audience feel the treadmill. -->
+        <section class="center-text">
+          <span class="kicker">Project 1 of 5 · .NET Remediation</span>
+          <h2 class="no-rule" style="font-size: 1.45em">Every .NET release started the count over</h2>
+          <p style="font-size: 0.68em; margin: 0.5em auto 0; max-width: 80%">
+            .NET is a Microsoft component most business software runs on. The moment Microsoft ships a new
+            version, every machine still holding the old one becomes a finding.
+          </p>
+          <!-- scale-in is the deck's house reveal for stats (kr-power-on is
+               reserved for the title slide — its breaker-flicker reads as a
+               glitch on a number). One keypress lands number + label together. -->
+          <div class="fragment scale-in">
+            <h1 class="accent" style="font-size: 4em; margin: 0.22em 0 0">Hundreds</h1>
+            <p class="muted" style="font-size: 0.6em; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; margin: 0">
+              new findings · every release · fleet-wide
+            </p>
+          </div>
+          <aside class="notes">
+            <strong>30 sec. Scenario only — do not explain the tool yet.</strong><br /><br />
+            “.NET is a Microsoft component that most of our business software runs on. Every time Microsoft
+            ships a new version, the version we’re on becomes outdated — and every machine still holding it
+            turns into a security finding.” <strong>Then press the arrow</strong> as you say: “That’s
+            <strong>hundreds</strong> of new findings, fleet-wide, every single release.”<br /><br />
+            Let the number sit for a beat, then advance. The next slide is how it’s handled; the one after
+            that is the result.<br />
+            ⚠ If you have the real Tenable number, say it instead of “hundreds” — a specific number is
+            stronger. The slide word stays “Hundreds” unless you want me to swap it.
+          </aside>
+        </section>
+
+        <!-- ===== SLIDE 6 (55s): .NET — HOW IT WORKS =====
+             Four steps, in the script's real execution order:
+             inventory → policy check → install (verified) → safe uninstall.
+             Deliberately no failure stories, no Dell, no error handling. -->
         <section>
-          <span class="kicker">Project 1 of 5 · .NET Remediation Framework</span>
-          <h2>The problem that kept coming back</h2>
-          <p style="font-size: 0.62em; margin: 0.3em 0">
-            .NET is a Microsoft component most business software depends on. Old versions have security holes.
-            Ours were outdated across the fleet — <b>flagged every scan, fixed by hand every time.</b>
-          </p>
-          <div class="kr-flow kr-stagger" style="margin-top: 0.5em">
-            <span class="kr-step">find everything</span><span class="kr-arrow">→</span>
-            <span class="kr-step">decide what’s wrong</span><span class="kr-arrow">→</span>
-            <span class="kr-step">install</span><span class="kr-arrow">→</span>
-            <span class="kr-step">remove</span><span class="kr-arrow">→</span>
-            <span class="kr-step">verify</span><span class="kr-arrow">→</span>
-            <span class="kr-step">report</span>
+          <span class="kicker">Project 1 of 5 · .NET Remediation</span>
+          <h2>One tool, four steps, every day</h2>
+          <div class="cols kr-stagger" style="--kr-delay: 0.25s; margin-top: 0.45em; align-items: stretch">
+            <div class="col kr-card center-text">
+              <div class="accent" style="font-size: 2.1em; font-weight: 900; line-height: 1">1</div>
+              <h3 style="font-size: 0.76em; margin: 0.18em 0 0.3em">Look</h3>
+              <p class="muted" style="font-size: 0.52em; margin: 0">
+                Finds every copy of .NET on the machine — including the places Windows keeps it that most
+                tools never check.
+              </p>
+            </div>
+            <div class="col kr-card center-text">
+              <div class="accent" style="font-size: 2.1em; font-weight: 900; line-height: 1">2</div>
+              <h3 style="font-size: 0.76em; margin: 0.18em 0 0.3em">Compare</h3>
+              <p class="muted" style="font-size: 0.52em; margin: 0">
+                Checks each one against a policy of what’s allowed. “Too old” is a setting someone can
+                change — not code.
+              </p>
+            </div>
+            <div class="col kr-card center-text">
+              <div class="accent" style="font-size: 2.1em; font-weight: 900; line-height: 1">3</div>
+              <h3 style="font-size: 0.76em; margin: 0.18em 0 0.3em">Update</h3>
+              <p class="muted" style="font-size: 0.52em; margin: 0">
+                Asks Microsoft what the current version is, downloads it, confirms it’s genuine, installs it.
+              </p>
+            </div>
+            <div class="col kr-card center-text">
+              <div class="accent" style="font-size: 2.1em; font-weight: 900; line-height: 1">4</div>
+              <h3 style="font-size: 0.76em; margin: 0.18em 0 0.3em">Retire</h3>
+              <p class="muted" style="font-size: 0.52em; margin: 0">
+                Removes the outdated version — but only once the newer one is confirmed installed and
+                working.
+              </p>
+            </div>
           </div>
-          <div class="kr-wire" style="width: 58%; margin: 0.25em auto 0.5em"></div>
-          <ol style="font-size: 0.62em; margin-top: 0.3em">
-            <li class="fragment fade-in-then-semi-out">
-              Finds .NET in <b class="accent">five</b> different places — including the one only the
-              security scanner was reading. I learned how the scanner looks, and taught my tool to look there too.
-            </li>
-            <li class="fragment fade-in-then-semi-out">
-              <b>Asks Microsoft what “current” means — every run.</b> Downloads it, verifies it’s authentic,
-              installs it. New releases need zero edits. “Too old” is a setting, not code.
-            </li>
-            <li class="fragment fade-in-then-semi-out">
-              <b>Never removes an old version</b> until a newer one is confirmed working — and every
-              destructive action defaults to <b>dry run</b>.
-            </li>
-          </ol>
+          <p class="fragment fade-up" style="text-align: center; font-size: 0.68em; margin-top: 0.7em">
+            Because step 3 asks Microsoft every run, a brand-new .NET release
+            <span class="accent" style="font-weight: 900">needs no change to the tool.</span>
+          </p>
           <aside class="notes">
-            <strong>80 sec — NEVER cut.</strong> Problem in one sentence, then walk the pipeline in ONE pass —
-            don’t stop on any box.<br /><br />
-            ① Say <strong>“five.”</strong> The specific number is the credibility.<br />
-            ② ⭐ Strongest thesis-payoff line: “…which is why nobody has to update the tool when Microsoft
-            ships a new release — <strong>it already knows</strong>.” And: “what counts as ‘too old’ is a
-            setting, not something buried in the code.”<br />
-            ③ The safety rule: “It never removes an old version until it has confirmed a newer one is
-            installed and working. Every destructive action defaults to a dry run.”<br /><br />
-            <em>Language: say “framework,” not “script.”</em><br />
-            💬 Q&amp;A (not on slide): fifth spot = SWID tags under C:\Program Files\dotnet\swidtag\ — no
-            uninstall entry, needed a dedicated cleanup path. Other four: dotnet CLI, filesystem, setup
-            registry, uninstall registry.
+            <strong>55 sec. Walk the four boxes once, plainly — one sentence each, don’t linger.</strong><br /><br />
+            ① “First it finds every copy of .NET on the machine — Windows keeps it in more than one place,
+            and the ones it hides are exactly the ones that get missed.”<br />
+            ② “Then it compares what it found against a policy — what version we’re willing to accept.
+            That’s a setting, so the rule can change without touching the code.”<br />
+            ③ “If something’s too old, it asks Microsoft what the current version is, downloads it, checks
+            it’s genuine, and installs it.”<br />
+            ④ “Then it removes the old one — but only after it’s confirmed the new one is actually
+            installed and working. It will never leave a machine with nothing.”<br /><br />
+            ⭐ Land the fragment line: “Because it asks Microsoft on every run, when a new .NET comes out
+            <strong>nobody has to update the tool. It already knows.</strong>”<br /><br />
+            <em>Say “tool” or “framework,” not “script.”</em> Do not go into failure modes here — if
+            someone asks, that’s Q&amp;A.<br />
+            💬 Q&amp;A only: five inventory sources (dotnet CLI, filesystem, setup registry, uninstall
+            registry, SWID tags); SHA512 verified against Microsoft release metadata; destructive actions
+            default to dry run; a protection map prevents removing a version with no newer replacement.
           </aside>
         </section>
 
-        <!-- ===== SLIDE 6 (75s — never cut): .NET — IMPACT + WHAT BROKE [auto-animate pair] ===== -->
-        <section class="center-text" data-auto-animate data-auto-animate-id="dotnet">
-          <span class="kicker">Project 1 of 5 · .NET Remediation Framework</span>
-          <!-- TODO: replace X with the real starting findings count from Tenable -->
-          <h1 data-id="findings" class="accent" style="font-size: 4.4em; margin: 0.3em 0 0.1em">X</h1>
-          <p data-id="findings-label" class="muted" style="font-size: 0.62em; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase">
-            .NET findings · every scan · fixed by hand
-          </p>
-          <aside class="notes">
-            <strong>Beat 1 setup.</strong> “Before this existed, .NET findings were our most repetitive
-            vulnerability — flagged every scan, fixed by hand every time, and back again the next quarter
-            when Microsoft shipped a new version.”<br /><br />
-            ⚠ CONFIRM the number from Tenable, then advance →
-          </aside>
-        </section>
-        <section class="center-text" data-auto-animate data-auto-animate-id="dotnet">
-          <span class="kicker">Project 1 of 5 · .NET Remediation Framework</span>
-          <h1 data-id="findings" class="accent" style="font-size: 1.8em; margin: 0">0</h1>
-          <p data-id="findings-label" class="muted" style="font-size: 0.5em; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; margin: 0.1em 0 0.4em">
-            .NET findings — cleared, and held daily
-          </p>
-          <p class="fragment fade-up" style="font-size: 0.8em; margin: 0.2em 0">
-            It didn’t just clear the findings. <b class="accent">It closed the category.</b>
-          </p>
-          <div class="fragment fade-up kr-card" style="text-align: left; font-size: 0.56em; margin-top: 0.3em">
-            <h3 style="font-size: 1.1em">It didn’t go smoothly</h3>
-            <p style="margin: 0.2em 0">
-              Dell’s management software runs constantly on all 1,600 machines — and held a <b>lock on the exact
-              files</b> my cleanup was deleting. Half-removed pieces would surface as failures <em>later</em>.
-            </p>
-            <p style="margin: 0.2em 0">
-              <b>The rebuild: all-or-nothing.</b> If anything is in use, don’t delete a single file — mark it
-              “finish after reboot” and move on.
-            </p>
+        <!-- ===== SLIDE 6B (35s — never cut): .NET — THE RESULT =====
+             The payoff. "Hundreds → 0" restates slide 5 so the contrast lands
+             without needing an auto-animate morph across a non-adjacent slide. -->
+        <section class="center-text">
+          <span class="kicker">Project 1 of 5 · .NET Remediation</span>
+          <!-- Arrives echoing slide 5 ("Hundreds · .NET findings"); keypress 1
+               scale-ins "→ 0" — the payoff beat. No kr-power-on here: that
+               flicker belongs to the title slide only. -->
+          <div class="kr-flow" style="justify-content: center; margin: 0.2em 0 0; font-size: 1.1em">
+            <span class="muted" style="font-size: 1.5em; font-weight: 900">Hundreds</span>
+            <span class="fragment scale-in" style="display: inline-flex; align-items: center">
+              <span class="kr-arrow" style="margin: 0 0.5em">→</span>
+              <span class="accent" style="font-size: 3.4em; font-weight: 900; line-height: 1">0</span>
+            </span>
           </div>
-          <p class="fragment kr-jolt" style="font-size: 0.92em; font-weight: 900; margin: 0.4em 0 0.2em">
-            At 1 machine, that’s a bug. At <span class="accent">1,600</span>, that’s an outage.
+          <p class="muted" style="font-size: 0.55em; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; margin: 0.35em 0 0">
+            .NET findings
+          </p>
+          <p class="fragment fade-up" style="font-size: 0.9em; margin: 0.65em 0 0">
+            It didn’t just clear them. <b class="accent">It closed the category.</b>
           </p>
           <div class="fragment fade-up kr-status">
-            <span class="kr-status-dot"></span><b>In production</b>&nbsp;· daily · 1,600+ computers · new releases handled on its own
+            <span class="kr-status-dot"></span><b>Runs daily</b>&nbsp;· 1,600+ machines · new releases handled on its own
           </div>
           <aside class="notes">
-            <strong>75 sec total — NEVER cut.</strong> Impact leads; Dell is a supporting beat.<br /><br />
-            “It cleared every .NET finding we had. And it keeps them cleared — it isn’t checking against a
-            version I typed in last spring, it’s checking against whatever Microsoft published this morning.
-            The fleet is current within a day and nobody files a ticket.”<br />
+            <strong>35 sec.</strong> The slide arrives showing only “Hundreds” — the echo of where this
+            started. Say “It took us from hundreds of .NET findings…” then <strong>press the arrow on
+            “…to zero”</strong> — and add: “and it holds that line, because it runs every day.”<br /><br />
             ⭐ Land it: “It didn’t just clear the findings. <strong>It closed the category.</strong> This
-            isn’t a vulnerability that comes back.” (Use “closed the category” — can’t be picked apart.)<br />
-            ⚠ Fill in: “Took it from X findings to zero, and it holds that line daily.”<br /><br />
-            <strong>Dell, compressed (~25s):</strong> locks on the exact files → removed what it could reach,
-            left what it couldn’t → surfaces later. Rebuilt all-or-nothing: check the whole folder first; if
-            anything’s in use, don’t delete a single file — “finish after reboot,” move on. Land “At one
-            machine, that’s a bug. At 1,600, that’s an outage” — <em>then stop.</em><br /><br />
-            Beat 3 (cut FIRST if over): “I almost missed it — my own error handling was swallowing the
-            reason. The run just said ‘failed.’ I fixed the logging first, and the real error was sitting
-            right there.”<br /><br />
-            Status line → then say: <strong>“and this runs without me.”</strong><br />
-            💬 Full Dell/TechHub detail, network-drop proof, silent no-op story: Presentation-Outline.md.
+            isn’t a vulnerability that comes back.” (“Closed the category” is the line — it can’t be picked
+            apart.)<br /><br />
+            Then the status line, and finish on: <strong>“and this runs without me.”</strong><br /><br />
+            ⚠ You said “pretty much” never touched it again — say “it hasn’t needed hands since,” not
+            “never.” Same claim, survives a follow-up question.
           </aside>
         </section>
 
-        <!-- ===== SLIDE 7 (65s — never cut): APPX — THE CAPABILITY GAP ===== -->
-        <section
-          class="divider"
-          data-state="kr-dark"
-          data-background-gradient="linear-gradient(150deg, #2a2a2a 0%, #1a1a1a 70%)"
-        >
+        <!-- ===== SLIDE 7 (30s): APPX — THE SCENARIO =====
+             Same shape as the .NET arc: scenario before mechanism. Two gaps,
+             two cards. No "I built the way" hero line (wrong voice), no
+             "only mechanism" claim (unverifiable). -->
+        <section class="center-text">
           <span class="kicker">Project 2 of 5 · Windows App Automation</span>
-          <h2 style="font-size: 1.45em; margin-bottom: 0.15em">The Microsoft Store is blocked.</h2>
-          <p class="muted" style="font-size: 0.68em; margin-top: 0">
-            So there was <b style="color: #fff">no way</b> to install or update Windows apps across the fleet. For anyone.
-          </p>
-          <h1 class="fragment kr-jolt" style="font-size: 2.5em; margin: 0.4em 0 0.1em">I built the way.</h1>
-          <p class="fragment fade-up" style="font-size: 0.78em; color: rgba(255, 255, 255, 0.9); margin: 0.1em 0">
-            The team uses it now.
-          </p>
-          <p class="fragment fade-up muted" style="font-size: 0.52em; margin-top: 0.7em">
-            Pulled straight from where Microsoft actually keeps the apps — installed the way Windows installs
-            them underneath the Store.<br />
-            <b style="color: #fff">The only mechanism the company has for it.</b>
+          <h2 class="no-rule" style="font-size: 1.45em">Windows apps were stuck two ways</h2>
+          <div class="cols kr-stagger" style="--kr-delay: 0.25s; margin-top: 0.55em; align-items: stretch">
+            <div class="col kr-card center-text">
+              <h3 style="font-size: 0.72em; margin-bottom: 0.3em">Updates didn’t stick</h3>
+              <p class="muted" style="font-size: 0.55em; margin: 0">
+                Our tooling updated some apps — but app versions live <b>per user</b>. The finding waited
+                for that user to sign back in. <b>They almost never did.</b>
+              </p>
+            </div>
+            <div class="col kr-card center-text">
+              <h3 style="font-size: 0.72em; margin-bottom: 0.3em">Installs had no path</h3>
+              <p class="muted" style="font-size: 0.55em; margin: 0">
+                The Microsoft Store is blocked for security. So there was <b>no way to install</b> a
+                Windows app on a fleet machine at all.
+              </p>
+            </div>
+          </div>
+          <p class="fragment fade-up" style="font-size: 0.72em; margin-top: 0.65em">
+            No reliable way to update. <b class="accent">No way at all to install.</b>
           </p>
           <aside class="notes">
-            <strong>65 sec — NEVER cut.</strong> ⭐ This exact framing, don’t soften it: “The Store is blocked
-            for security reasons, so there was no mechanism to install or update Windows apps across the
-            fleet. <strong>I built the way. The team uses it now.</strong>” — strongest sentence in the deck.
-            Say it, PAUSE, then explain.<br /><br />
-            Then plainly: “Rather than work around the Store, I went to the place Microsoft actually keeps
-            the apps and pulled them directly — then installed them the way Windows installs them underneath
-            the Store.”<br /><br />
-            Impact, not size: “Before this, the company had no way to do this at all. This is the only
-            mechanism that exists for it.” <em>Skip line counts.</em><br />
-            💬 Q&amp;A: Windows Update SOAP API + DISM provisioning; empty 1.0.0.0 placeholder packages need
-            the flag to pull the real payload.
+            <strong>30 sec. Scenario only — the tool comes next.</strong><br /><br />
+            “Windows apps — the Store kind — were stuck two ways. We had tooling that could update some of
+            them, but app versions live <strong>per user</strong>. So even after an update, the finding sat
+            there waiting for the old user to sign back in so their copy could be fixed — and on a shared or
+            reassigned machine, that almost never happens. And installing? The Store is blocked for security,
+            so there was no way to put a Windows app on a machine at all.”<br /><br />
+            Press the arrow on the summary line, let it sit, advance.
           </aside>
         </section>
 
-        <!-- ===== SLIDE 8 (75s): APPX — THE HARD PART + STATUS ===== -->
+        <!-- ===== SLIDE 8 (60s): APPX — HOW IT WORKS + STATUS =====
+             Four steps, same card grammar as the .NET slide (Look / Compare /
+             Update / Retire ↔ Look / Fetch / Install / Clear) — the parallel
+             is deliberate: project 2 told the same way as project 1.
+             The v1 "interrupted first, asked second" story is cut from screen;
+             it survives in slide 14's notes and Q&A. -->
         <section>
           <span class="kicker">Project 2 of 5 · Windows App Automation</span>
-          <h2 style="font-size: 1.35em">The hard part wasn’t the apps —<br />it was the people using them</h2>
-          <ul style="font-size: 0.6em; margin-top: 0.2em">
-            <li>Someone’s working? <b>Ask first</b> — postponable, with a limit that can’t be put off forever.</li>
-            <li>Nobody signed in? <b>Stage it</b> — finishes cleanly at their next sign-in.</li>
-          </ul>
-          <p class="fragment fade-up" style="font-size: 0.6em; margin: 0.5em 0 0.2em">
-            <span class="muted">My first version had the order wrong:</span> it removed the person’s running copy
-            <b>before the warning ever reached them</b>. Interrupted first, asked second.
-          </p>
-          <p class="fragment kr-wipe" style="font-size: 0.95em; font-weight: 900; text-align: center; margin: 0.45em 0">
-            The fix was <span class="accent">deleting a step</span> — not adding one.
-          </p>
-          <div class="kr-flow fragment kr-group-stagger">
-            <span class="kr-step">stage</span><span class="kr-arrow">→</span>
-            <span class="kr-step">ask</span><span class="kr-arrow">→</span>
-            <span class="kr-step">clean up</span><span class="kr-arrow">→</span>
-            <span class="kr-step">switch over</span>
+          <h2>Basically, a command-line Microsoft Store</h2>
+          <div class="cols kr-stagger" style="--kr-delay: 0.25s; margin-top: 0.45em; align-items: stretch">
+            <div class="col kr-card center-text">
+              <div class="accent" style="font-size: 2.1em; font-weight: 900; line-height: 1">1</div>
+              <h3 style="font-size: 0.76em; margin: 0.18em 0 0.3em">Look</h3>
+              <p class="muted" style="font-size: 0.52em; margin: 0">
+                Finds every version of every app — in <b>every user profile</b> on the machine.
+              </p>
+            </div>
+            <div class="col kr-card center-text">
+              <div class="accent" style="font-size: 2.1em; font-weight: 900; line-height: 1">2</div>
+              <h3 style="font-size: 0.76em; margin: 0.18em 0 0.3em">Fetch</h3>
+              <p class="muted" style="font-size: 0.52em; margin: 0">
+                Asks Microsoft’s delivery service directly — <b>the same place the Store pulls from</b>.
+              </p>
+            </div>
+            <div class="col kr-card center-text">
+              <div class="accent" style="font-size: 2.1em; font-weight: 900; line-height: 1">3</div>
+              <h3 style="font-size: 0.76em; margin: 0.18em 0 0.3em">Install</h3>
+              <p class="muted" style="font-size: 0.52em; margin: 0">
+                Installs it <b>machine-wide, once</b> — every profile gets it, current and future.
+              </p>
+            </div>
+            <div class="col kr-card center-text">
+              <div class="accent" style="font-size: 2.1em; font-weight: 900; line-height: 1">4</div>
+              <h3 style="font-size: 0.76em; margin: 0.18em 0 0.3em">Clear</h3>
+              <p class="muted" style="font-size: 0.52em; margin: 0">
+                Removes <b>every outdated copy</b> in the same pass — no waiting for sign-ins.
+              </p>
+            </div>
           </div>
+          <p class="fragment fade-up" style="text-align: center; font-size: 0.68em; margin-top: 0.6em">
+            One run clears the whole machine — <span class="accent" style="font-weight: 900">install and
+            update, Store or no Store.</span>
+          </p>
           <div class="fragment fade-up kr-status">
-            <span class="kr-status-dot"></span><b>In use</b>&nbsp;· the whole team · installing and updating Windows apps today
+            <span class="kr-status-dot"></span><b>Entering production</b>&nbsp;· about to run daily · alongside the .NET engine
           </div>
           <aside class="notes">
-            <strong>75 sec.</strong> Setup (~20s): “Installing software on a computer someone is actively
-            working on is a completely different problem from installing it on an empty one.” Ask → postpone
-            → limit; not logged in → staged for next sign-in.<br />
-            💬 The limit: 48-hour grace window tracked on the machine itself — survives reboots.<br /><br />
-            ⭐ Story beat (~40s): v1 removed the logged-in person’s copy inside the main loop — before the
-            warning reached them. “When I went to fix the warning timing, I found the real answer: that
-            removal step didn’t need to happen at all. You can install the new version right over the old
-            registration — the app they have open keeps running off the files it already has, while the
-            record the scanner reads updates immediately. Both things are true at once.”<br />
-            <strong>“The fix wasn’t a better warning. It was deleting a step.”</strong> Four phases:
-            stage → ask → clean up → switch over. Nothing the user can see happens until they’ve been asked.<br /><br />
-            Optional beat (~15s — CUT FIRST): tool checked its own settings instead of the logged-in
-            person’s (runs as the computer, not a person) — audits quietly passing. ⚠ CONFIRM “reused in two
-            more tools” before saying “two”; else say “and reused the same fix elsewhere.”<br /><br />
-            💬 Q&amp;A: all-user removal tears out the provisioning anchor; machine-account = no “current
-            user,” null guards; orphaned provisioning records; 3D Viewer removal (deprecated Feb 2026) —
-            same tool, opposite direction.
+            <strong>60 sec. Same walk as the .NET slide — one sentence per box, and SAY the parallel:</strong>
+            “Same shape as the .NET engine — look, decide, fix, clean up.”<br /><br />
+            ① “It finds every version of every app, in every user profile on the machine — that’s the part
+            the old tooling couldn’t see.”<br />
+            ② “Then it goes to Microsoft’s delivery service directly — the same place the Store itself pulls
+            apps from — and asks for the current version.”<br />
+            ③ “It installs machine-wide, once. Every profile gets it — including people who haven’t signed
+            in yet.”<br />
+            ④ “And it clears every outdated copy in that same pass. Nobody has to sign back in for the
+            finding to go away.”<br /><br />
+            ⭐ Land the fragment: “So one run clears the whole machine — install and update, Store or no
+            Store. It’s basically a command-line Microsoft Store.”<br /><br />
+            ⚠ Do NOT claim it’s “the only way” or “the only mechanism” — you’re not certain. If asked, say:
+            “It’s the only way I’m aware of for us to get apps straight from Microsoft with the Store
+            blocked.”<br />
+            ⚠ Status: “entering production, about to run daily” — don’t say “in production” until it’s
+            actually scheduled.<br />
+            💬 Q&amp;A: Windows Update SOAP API (fe3.delivery.mp.microsoft.com) + DISM provisioning; stub
+            1.0.0.0 placeholder packages detected and worked around; active users get an “Update now /
+            Remind me later” dialog with a 48-hour grace window tracked on the machine; v1 ordering story
+            (interrupted first, asked second → the fix was deleting the removal step) if anyone asks about
+            lessons learned.
           </aside>
         </section>
 
@@ -378,26 +453,26 @@
                   <span class="kr-live"><span class="kr-status-dot"></span>LIVE</span>
                 </div>
                 <div class="kr-browser-body" style="height: 8.2em">
-                  <!-- TODO: drop the real screenshot at public/images/onboarding-after.png then use:
-                       <img src="/images/onboarding-after.png" alt="Device onboarding site" />
+                  <!-- TODO: drop the real screenshot at images/onboarding-after.png then use:
+                       <img src="images/onboarding-after.png" alt="Device onboarding site" />
                        Optional before/after (outline: side by side, if the old version survives):
                        shrink this frame to class="col" and add a second, smaller .kr-browser with
-                       /images/onboarding-before.png labeled “v1”. -->
+                       images/onboarding-before.png labeled “v1”. -->
                   <div class="kr-shot-todo">
                     screenshot goes here<br />
-                    <b>public/images/onboarding-after.png</b>
+                    <b>images/onboarding-after.png</b>
                   </div>
                 </div>
               </div>
             </div>
             <div class="col" style="font-size: 0.58em">
               <ul style="margin: 0">
-                <li><b>Designed and wrote all of it</b> — layout, styling, behavior. HTML · CSS · JavaScript.</li>
-                <li>Every step is <b>one action</b> — progress tracked, so you can stop and pick back up.</li>
+                <li><b>Designed and wrote all of it</b> — HTML · CSS · JavaScript.</li>
+                <li>Every step is <b>one action</b>, progress saved as you go.</li>
               </ul>
               <p class="fragment fade-up" style="margin: 0.7em 0 0">
                 <span class="muted">“The quality wasn’t there.”</span><br />
-                <b>So I rebuilt it from scratch</b> — designed for someone’s first day, not for me.
+                <b>So I rebuilt it from scratch</b> — for someone’s first day, not for me.
               </p>
             </div>
           </div>
@@ -484,7 +559,7 @@
           <!-- TODO: confirm the count against ci.yaml — if a test job is in there now,
                add a "tests" chip and say EIGHT out loud -->
           <p class="fragment" data-fragment-index="1" style="font-size: 0.6em; margin: 0.4em 0 0.1em; text-align: center">
-            <b class="accent">Seven checks</b> before anything merges — count them:
+            <b class="accent">Seven checks</b> before anything merges:
           </p>
           <div class="kr-flow fragment kr-group-stagger" data-fragment-index="1" style="margin: 0.2em 0">
             <span class="kr-step">compiles</span>
@@ -496,11 +571,10 @@
             <span class="kr-step">merge gate</span>
           </div>
           <p class="fragment fade-up" data-fragment-index="2" style="font-size: 0.6em; text-align: center; margin: 0.35em 0 0.1em">
-            And it caught a real one — our own code loading files from an <b>unverified value</b>.
-            Caught <b class="accent">before it merged</b>, not after it shipped.
+            It caught a real vulnerability in our own code — <b class="accent">before it merged</b>, not after it shipped.
           </p>
           <p class="fragment fade-up" data-fragment-index="3" style="font-size: 0.6em; text-align: center; margin: 0.1em 0">
-            Plus the project’s <b>first automated tests</b> — starting with access control.
+            Plus the project’s <b>first automated tests</b>.
           </p>
           <div class="fragment fade-up kr-status" data-fragment-index="4" style="margin-top: 0.5em">
             <span class="kr-status-dot"></span><b>In production</b>&nbsp;· every change to KRSpark · nothing merges until it passes
@@ -532,18 +606,18 @@
           <div class="cols" style="margin-top: 0.5em">
             <div class="col kr-card fragment scale-in">
               <h3>Deploys itself</h3>
-              <p style="margin: 0.2em 0">Build → verify → copy to the live server → <b>fail loudly</b> if it doesn’t land.</p>
-              <p class="muted" style="margin: 0.2em 0">Front end + the .NET back-end service. Nobody copies files by hand anymore.</p>
+              <p style="margin: 0.2em 0">Build → verify → live server → <b>fail loudly</b> if it doesn’t land.</p>
+              <p class="muted" style="margin: 0.2em 0">Front end + .NET back end. No more hand-copying.</p>
             </div>
             <div class="col kr-card fragment scale-in">
               <h3>Every version labeled</h3>
               <p style="margin: 0.2em 0">A number + an <b>automatic record of what changed</b>.</p>
-              <p class="muted" style="margin: 0.2em 0">Test versions recognized as test versions — nobody flags them by hand.</p>
+              <p class="muted" style="margin: 0.2em 0">Test builds flag themselves.</p>
             </div>
             <div class="col kr-card fragment scale-in">
               <h3>Checks are load-bearing</h3>
-              <p style="margin: 0.2em 0">A check that reports is a suggestion. <b>These block the merge.</b></p>
-              <p class="muted" style="margin: 0.2em 0">And who can change what is structured — the pipeline can’t be quietly edited around.</p>
+              <p style="margin: 0.2em 0">A report is a suggestion. <b>These block the merge.</b></p>
+              <p class="muted" style="margin: 0.2em 0">The pipeline can’t be quietly edited around.</p>
             </div>
           </div>
           <div class="fragment fade-up kr-status">
@@ -570,20 +644,27 @@
           <span class="kicker">Project 4 of 5 · The Multiplier</span>
           <h2 class="no-rule" style="font-size: 1.8em">Built once. <span class="accent">Inherited by everything after.</span></h2>
           <ul class="kr-stagger" style="--kr-delay: 0.4s; font-size: 0.68em; margin-top: 0.5em">
-            <li>Every check lives in <b>one central repository</b> — projects inherit them instead of copying them.</li>
-            <li>Improve it once → <b>everything improves</b>. No five slowly-rotting copies.</li>
-            <li>A starter template: new projects begin <b>fully wired on day one</b> — pipeline, standards, tooling, tests.</li>
-            <li class="muted">A second template for the .NET stack is in progress; a third stack after that.</li>
+            <li>Every CI and CD check lives in <b>one central pipelines repository</b> — referenced, not copied.</li>
+            <li><b>Multiple projects run on them today.</b> Improve it once → all of them improve.</li>
+            <li>Starter templates per stack — dependencies, config, and the <b>AI guardrails</b> already wired in.</li>
+            <li class="muted">One per framework and language we use. More in progress.</li>
           </ul>
           <aside class="notes">
-            <strong>45 sec — this slide is the FIRST thing to cut if you’re running long.</strong><br />
+            <strong>45 sec. No longer the automatic first cut</strong> — this is now proven rather than
+            aspirational, so if you’re long, trim slide 11 beat ③ instead.<br />
             “The last piece was making sure none of this was a one-project thing.”<br /><br />
-            ⚠ CONFIRM before saying “projects reference them”: is KRSpark’s CI actually calling the shared
-            workflows yet, or is the central repo built but not yet consumed? If built-but-not-consumed:
-            “the checks now live in one central place so projects can inherit them instead of copying them” —
-            same substance, no overclaim.<br /><br />
-            Real: central Pipelines repo with reusable workflows; VUE-APP-TEMPLATE complete;
-            NET-APP-TEMPLATE in progress.<br />
+            ① “The CI and CD checks don’t live in KRSpark — they live in one central pipelines repository,
+            and projects reference them. More than one project is running on them right now. That means when
+            I improve a check, every project that references it improves too — there aren’t five copies
+            slowly drifting apart.”<br />
+            ⚠ Say “multiple” or “a couple” — do NOT commit to a specific count on stage.<br /><br />
+            ③ ⭐ <strong>This bullet is the bridge into the AI slide — don’t rush it.</strong> “I’m also
+            building a starter template for each framework and language we use. A new project starts with
+            its dependencies, its configuration, its pipeline — and the AI guardrails — already in place.”
+            Then advance: the next slide is what those guardrails are.<br />
+            ⚠ Templates are IN PROGRESS. Say “I’m building” / “as they land,” not “every new project starts
+            from them.”<br /><br />
+            <em>Language: “AI guardrails,” never “agents” or “skills”</em> — same vocabulary as slide 13.<br />
             <em>Do NOT mention:</em> RA Serialization pipelines (written, not merged), Gitleaks (pending the
             binary install — do not claim it’s running), path constraints, TS version pin.
           </aside>
@@ -598,23 +679,23 @@
           <div class="kr-bands">
             <div class="kr-band b1 fragment">
               <span class="kr-band-name">Rules</span>
-              <span>What it should do — read before it touches anything. Portable to any AI vendor.</span>
+              <span>What it should do — read before it touches anything.</span>
             </div>
             <div class="kr-band b2 fragment">
               <span class="kr-band-name">Procedures</span>
-              <span>The repeatable work, done the same way every time — checks, tests, docs, accessibility.</span>
+              <span>The repeatable work, done the same way every time.</span>
             </div>
             <div class="kr-band b3 fragment">
               <span class="kr-band-name">Reviewers</span>
-              <span>Read-only — one for the design, one for the code. They can look. They can’t touch.</span>
+              <span>One for design, one for code. <b>They can look, not touch.</b></span>
             </div>
             <div class="kr-band b4 fragment">
               <span class="kr-band-name">Enforcement</span>
-              <span>Hard blocks on the handful of actions that must never happen. Not a warning — <b>it doesn’t execute.</b></span>
+              <span>What must never happen, can’t. Not a warning — <b>it doesn’t execute.</b></span>
             </div>
           </div>
           <p class="fragment fade-up" style="font-size: 0.72em; text-align: center; margin-top: 0.5em">
-            Rules for the 99%. <b class="accent">Hard blocks for the things that must never happen.</b>
+            Rules for the 99%. <b class="accent">Hard blocks for the rest.</b>
           </p>
           <aside class="notes">
             <strong>85 sec — NEVER cut; most current work.</strong> Open with the problem, not the
@@ -638,8 +719,10 @@
             problems.”<br /><br />
             <em>Language for this room: “rulebook, procedures, reviewers, enforcement layer.” NEVER say
             AGENTS.md, skill, hook, subagent, or agent.</em><br />
-            ⚠ CONFIRM adoption before implying it: in use → “it’s in the template every new project starts
-            from”; not rolled out → “built and going into the templates.”<br />
+            <strong>Open by picking up slide 12:</strong> you just said the templates carry the guardrails —
+            this slide is what they are. Delivery phrasing while templates are in progress: <strong>“built,
+            and going into the templates as they land.”</strong> Upgrade to “it’s in the template every new
+            project starts from” only once that’s actually true.<br />
             💬 Q&amp;A mechanisms + “isn’t this just trusting AI?” answers: Presentation-Outline.md.
           </aside>
         </section>
@@ -651,26 +734,29 @@
           <ol style="font-size: 0.72em; line-height: 1.45; margin-top: 0.4em">
             <li class="fragment fade-in-then-semi-out" style="margin-bottom: 0.6em">
               <b>Scale changes engineering.</b><br />
-              <span class="muted" style="font-size: 0.85em">Error handling and safety mean something completely different at 1,600 machines than at one. The Dell story is that lesson in one example.</span>
+              <span class="muted" style="font-size: 0.85em">Safety means something different at 1,600 machines than at one.</span>
             </li>
             <li class="fragment fade-in-then-semi-out" style="margin-bottom: 0.6em">
               <b>Automation is only worth what it enforces.</b><br />
-              <span class="muted" style="font-size: 0.85em">A check that reports a problem is a suggestion. A check that blocks the merge is a rule.</span>
+              <span class="muted" style="font-size: 0.85em">A report is a suggestion. A blocked merge is a rule.</span>
             </li>
             <li class="fragment fade-in-then-semi-out">
-              <b>The best fix is often removing a step, not adding one.</b><br />
-              <span class="muted" style="font-size: 0.85em">The changes I’m proudest of: realizing a step didn’t need to happen — and refusing to do something halfway.</span>
+              <b>The best fix is often removing a step.</b><br />
+              <span class="muted" style="font-size: 0.85em">My proudest change was realizing a step didn’t need to happen.</span>
             </li>
           </ol>
           <aside class="notes">
             <strong>40 sec (trim to 30) — cut SECOND if over.</strong> Reference the stories, do NOT
             re-explain them.<br />
-            1. Dell = that lesson in one example.<br />
-            2. Two concrete referents behind it now: the merge gate (slide 11) and the AI hard blocks
+            1. NOTE: the Dell file-lock story was cut from the .NET slides, so the audience hasn’t heard
+            it — this lesson now stands on its own. (Dell is still great Q&amp;A material: Dell’s software
+            held locks on the exact files being cleaned; the fix was all-or-nothing removal.)<br />
+            2. Two concrete referents behind it: the merge gate (slide 11) and the AI hard blocks
             (slide 13) — “a written rulebook and a hard block are not the same tool.”<br />
-            3. Covers the AppX reorder and the Dell all-or-nothing fix in one sentence: “My instinct on every
-            one of these was to add more logic. The two changes I’m proudest of were realizing a step didn’t
-            need to happen at all, and refusing to do something halfway.”
+            3. NOTE: the AppX v1 reorder story was cut from slide 8, so the audience hasn’t heard it —
+            tell it here in ONE line if you want the referent: “My first version of the app tool removed
+            someone’s running copy before the warning reached them. The fix wasn’t a better warning — it
+            was realizing the removal step didn’t need to happen at all.”
           </aside>
         </section>
 
@@ -684,13 +770,13 @@
           <h1 class="kr-cascade kr-glow white" data-kr-split="words" style="font-size: 1.9em; margin-bottom: 0.25em">
             Everything I built runs without me.
           </h1>
-          <!-- TODO: same X as slide 4 -->
+          <!-- Keep in sync with slide 4's count. -->
           <p style="font-size: 0.55em; opacity: 0.92; margin: 0.2em 0 0.5em">
-            <b>X</b> scripts &amp; tools · <b>5</b> projects · all of them running right now
+            <b>19</b> scripts &amp; tools · <b>5</b> projects · running today or entering production
           </p>
           <div class="kr-status-stack kr-stagger" style="--kr-delay: 0.9s; font-size: 0.9em">
             <div class="kr-status"><span class="kr-status-dot"></span><b>.NET framework</b>&nbsp;— in production · daily · 1,600+ machines</div>
-            <div class="kr-status"><span class="kr-status-dot"></span><b>App automation</b>&nbsp;— in use across the team</div>
+            <div class="kr-status"><span class="kr-status-dot"></span><b>App automation</b>&nbsp;— entering production · daily</div>
             <div class="kr-status"><span class="kr-status-dot"></span><b>Onboarding site</b>&nbsp;— live on the Kirby Risk site</div>
             <div class="kr-status"><span class="kr-status-dot"></span><b>KRSpark pipeline</b>&nbsp;— every change · every deploy</div>
             <div class="kr-status"><span class="kr-status-dot"></span><b>AI guardrails</b>&nbsp;— built · heading into every template</div>
@@ -698,11 +784,12 @@
           <p class="small" style="margin-top: 0.7em; letter-spacing: 0.26em; text-transform: uppercase; opacity: 0.85">
             Thank you · 100 Years · <b>Make It Happen!</b>
           </p>
-          <img src="/images/kr-logo-white.svg" alt="Kirby Risk" style="height: 34px; margin: 0.2em 0 0" />
+          <img src="images/kr-logo-white.svg" alt="Kirby Risk" style="height: 34px; margin: 0.2em 0 0" />
           <aside class="notes">
-            <strong>35 sec (trim to 25).</strong> “X scripts and tools, and five things I’d call projects:
-            the .NET framework, the Windows app automation, the onboarding site, the pipeline, and the AI
-            guardrails. All of them are running right now. <strong>None of them need me to run.</strong>”<br /><br />
+            <strong>35 sec (trim to 25).</strong> “Nineteen scripts and tools, and five things I’d call
+            projects: the .NET framework, the Windows app automation, the onboarding site, the pipeline, and
+            the AI guardrails. They’re running today or entering production right now — and
+            <strong>none of them need me to run.</strong>”<br /><br />
             “The through-line: I came in thinking automation was about saving time. It’s actually about doing
             the same thing correctly every time, on every machine, whether or not anyone’s watching.”<br /><br />
             Then thank them and STOP. Do not trail off into “so yeah, that’s about it.”<br />

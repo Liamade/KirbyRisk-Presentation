@@ -16,7 +16,7 @@ the content; Claude's job is structure, styling, animation, and review.
 - `index.html` — ALL slides, one `<section>` per slide, ordered top-to-bottom; deck config in the `<script type="module">` block at the bottom
 - `theme/kirby-risk.css` — brand theme, once applied (it ships inside the kirby-risk-brand skill until then)
 - `effects/kr-effects.css` + `effects/kr-effects.js` — signature animations, once installed (they ship inside the kr-effects skill until then)
-- `public/images/` — images/logos, referenced as `/images/…`
+- `images/` — images/logos, referenced RELATIVELY as `images/…` (no leading slash, so Live Server works too)
 - `docs/outline.md` — narrative outline (created by the story-coach agent)
 
 ## Skills — read before touching slides
